@@ -3,7 +3,7 @@ import { TextInputWithOption } from "@/domain/signup/common/components/input/Tex
 import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { TextArea } from "@/domain/signup/common/components/textarea";
-import { useAddressArticle } from "../../hooks/useAddressArticle";
+import { useAddressArticle } from "../hooks/useAddressArticle";
 
 export const AddressArticle = () => {
   const { state } = useAddressArticle();

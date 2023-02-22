@@ -1,7 +1,7 @@
 import { TextInput } from "@/domain/signup/common/components/input/TextInput";
 import { TextInputWithCheckbox } from "@/domain/signup/common/components/input/TextInputWithCheckbox";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { useAssistantArticle } from "../../hooks/useAssistantArticle";
+import { useAssistantArticle } from "../hooks/useAssistantArticle";
 
 export const AssistanceArticle = () => {
   const { state } = useAssistantArticle();

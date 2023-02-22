@@ -2,7 +2,7 @@ import { TextInput } from "@/domain/signup/common/components/input/TextInput";
 import { TextInputWithOption } from "@/domain/signup/common/components/input/TextInputWithOption";
 import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { useContactArticle } from "../../hooks/useContactArticle";
+import { useContactArticle } from "../hooks/useContactArticle";
 
 export const ContactArticle = () => {
   const { state } = useContactArticle();

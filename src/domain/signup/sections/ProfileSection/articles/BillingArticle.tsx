@@ -1,5 +1,5 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { useAddressArticle } from "../../hooks/useAddressArticle";
+import { useAddressArticle } from "../hooks/useAddressArticle";
 
 export const BillingArticle = () => {
   const { state } = useAddressArticle();
