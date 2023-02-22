@@ -1,4 +1,5 @@
-import "../common/theme/styles/globals.css";
+import { Layout } from "@/common/components/Layout/Layout";
+import "@/common/theme/styles/globals.css";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
@@ -8,7 +9,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </RecoilRoot>
     </QueryClientProvider>
   );

@@ -1,0 +1,48 @@
+name: guidepoint-client-fe CI
+
+on:
+  push:
+    paths-ignore:
+    - 'README.md'
+    branches: 
+      - 'main'
+      - 'dev'
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+    branches:
+      - 'main'
+      - 'dev'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+    
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+      
+    - name: Start Build Action
+      run: yarn install --immutable --immutable-cache --check-cache
+      
+    - uses: ravsamhq/notify-slack-action@v2
+      if: always()
+      with:
+        status: ${{ job.status }}
+        notification_title: '{workflow} has {status_message}'
+        message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
+        footer: 'Linked Repo <{repo_url}|{repo}>'
+        notify_when: 'success,failure,cancelled,warnings,skipped'
+        mention_users: 'U047ARCL555'
+        mention_users_when: 'success,failure,cancelled,warnings,skipped'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
