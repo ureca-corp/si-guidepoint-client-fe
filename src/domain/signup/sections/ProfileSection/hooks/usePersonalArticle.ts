@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export const usePersonalArticle = () => {
+  const [prefix, setPrefix] = useState("Mr");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,8 +22,17 @@ export const usePersonalArticle = () => {
   const handleSuffixChange = (v: string) => {
     setSuffix(v);
   };
+
+  const handlePrefixChange = (v: string) => {
+    setPrefix(v);
+  };
+
   return {
     state: {
+      prefix: {
+        value: prefix,
+        onChange: handlePrefixChange,
+      },
       firstName: {
         value: firstName,
         onChange: handleFirstNameChange,

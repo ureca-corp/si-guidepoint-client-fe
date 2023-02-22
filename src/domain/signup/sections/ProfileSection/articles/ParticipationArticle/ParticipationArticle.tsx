@@ -1,34 +1,42 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { Title } from "@/domain/signup/common/components/Title";
-import { Stack } from "@mui/material";
-import { usePersonalArticle } from "../../hooks/usePersonalArticle";
+import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
+import { CheckboxArticleTemplate } from "@/domain/signup/common/components/template";
+import { useParticipationArticle } from "../../hooks/useParticipationArticle";
 
 export const ParticipationArticle = () => {
-  const { state } = usePersonalArticle();
+  const { state } = useParticipationArticle();
 
   return (
-    <Stack width="100%" spacing="8px">
-      <Title title={"Assistance Contact Information"} />
-      <TextInput
-        label={"First Name"}
-        value={state.firstName.value}
-        onChange={state.firstName.onChange}
+    <CheckboxArticleTemplate title="Your Participation">
+      <BasicCheckbox
+        checkLabel="Phone Consultations"
+        checked={state.phoneConsultation.isChecked}
+        onChange={state.phoneConsultation.onChange}
       />
-      <TextInput
-        label={"Middle Initial"}
-        value={state.middleName.value}
-        onChange={state.middleName.onChange}
+      <BasicCheckbox
+        checkLabel="In-Person Meetings"
+        checked={state.inPerson.isChecked}
+        onChange={state.inPerson.onChange}
       />
-      <TextInput
-        label={"Last Name"}
-        value={state.lastName.value}
-        onChange={state.lastName.onChange}
+      <BasicCheckbox
+        checkLabel="Surveys"
+        checked={state.surveys.isChecked}
+        onChange={state.surveys.onChange}
       />
-      <TextInput
-        label={"Suffix"}
-        value={state.suffix.value}
-        onChange={state.suffix.onChange}
+      <BasicCheckbox
+        checkLabel="QuickPolls (Short Surveys)"
+        checked={state.quickPolls.isChecked}
+        onChange={state.quickPolls.onChange}
       />
-    </Stack>
+      <BasicCheckbox
+        checkLabel="Expert Witness"
+        checked={state.expert.isChecked}
+        onChange={state.expert.onChange}
+      />
+      <BasicCheckbox
+        checkLabel="Long-Term Engagement"
+        checked={state.engagement.isChecked}
+        onChange={state.engagement.onChange}
+      />
+    </CheckboxArticleTemplate>
   );
 };

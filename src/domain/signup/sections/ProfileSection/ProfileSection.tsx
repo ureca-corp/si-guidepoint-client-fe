@@ -1,4 +1,5 @@
 import { Stack } from "@mui/system";
+import { ArticlesWrapper } from "../../common/components/template";
 import {
   AddressArticle,
   AssistanceArticle,
@@ -6,23 +7,28 @@ import {
   ContactArticle,
   ParticipationArticle,
   PersonalArticle,
+  PhysicalArticle,
 } from "./articles";
 
 export const ProfileSection = () => {
   return (
-    <Stack width="100%">
-      <Stack width="100%" direction={"row"} spacing="2.77vw">
+    <Stack width="100%" paddingY="2.77vw" spacing="2.77vw">
+      <ArticlesWrapper>
         <PersonalArticle />
         <AssistanceArticle />
-      </Stack>
-      <Stack direction={"row"}>
+      </ArticlesWrapper>
+      <ArticlesWrapper>
         <ContactArticle />
         <ParticipationArticle />
-      </Stack>
-      <Stack direction={"row"}>
+      </ArticlesWrapper>
+      <ArticlesWrapper>
         <AddressArticle />
         <BillingArticle />
-      </Stack>
+      </ArticlesWrapper>
+      <ArticlesWrapper>
+        <PhysicalArticle />
+        <BillingArticle />
+      </ArticlesWrapper>
     </Stack>
   );
 };

@@ -1,5 +1,12 @@
-import { css } from "@emotion/react";
+import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { useAddressArticle } from "../../hooks/useAddressArticle";
 
 export const BillingArticle = () => {
-  return <div></div>;
+  const { state } = useAddressArticle();
+
+  return (
+    <ArticleTemplate title="Billing Information">
+      <div></div>
+    </ArticleTemplate>
+  );
 };

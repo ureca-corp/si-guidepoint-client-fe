@@ -1,14 +1,18 @@
 import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { Title } from "@/domain/signup/common/components/Title";
-import { Stack } from "@mui/system";
+import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
+import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { usePersonalArticle } from "../../hooks/usePersonalArticle";
 
 export const PersonalArticle = () => {
   const { state } = usePersonalArticle();
 
   return (
-    <Stack width="100%" spacing="1.11vw">
-      <Title title={"Assistance Contact Information"} />
+    <ArticleTemplate title="Personal Information">
+      <FullSelection
+        label={"prefix"}
+        value={state.prefix.value}
+        onChange={state.prefix.onChange}
+      />
       <TextInput
         label={"First Name"}
         value={state.firstName.value}
@@ -29,6 +33,6 @@ export const PersonalArticle = () => {
         value={state.suffix.value}
         onChange={state.suffix.onChange}
       />
-    </Stack>
+    </ArticleTemplate>
   );
 };
