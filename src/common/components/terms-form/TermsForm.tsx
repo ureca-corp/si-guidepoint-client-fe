@@ -4,8 +4,16 @@ import { useState } from "react";
 
 export const TermsForm = () => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const handleTitleChange = (value: string) => {
     setTitle(value);
+  };
+  const handleCotentChange = (value: string) => {
+    setContent(value);
+  };
+  const handleCheckBox = (value: boolean) => {
+    setIsChecked(value);
   };
 
   return (
@@ -17,15 +25,20 @@ export const TermsForm = () => {
               <Typography variant={"h6"}>제목</Typography>
             </div>
 
-            <TextField css={sx.input} placeholder="제목을 입력해주세요." />
+            <TextField
+              value={title}
+              onChange={(e) => handleTitleChange(e.target.value)}
+              css={sx.input}
+              placeholder="제목을 입력해주세요."
+            />
           </li>
           <li css={sx.list}>
             <div css={sx.listTitle}>
               <Typography variant={"h6"}>내용</Typography>
             </div>
             <TextField
-              value={title}
-              onChange={(e) => handleTitleChange(e.target.value)}
+              value={content}
+              onChange={(e) => handleCotentChange(e.target.value)}
               css={sx.textarea}
               placeholder="내용을을 입력해주세요."
               minRows={14}
@@ -36,7 +49,7 @@ export const TermsForm = () => {
             <div css={sx.listTitle}>
               <Typography variant={"h6"}>필수 여부</Typography>
             </div>
-            <Checkbox />
+            <Checkbox onClick={(e) => handleCheckBox(e.target.value)} />
           </li>
         </ul>
         <div css={sx.buttonWrap}>
