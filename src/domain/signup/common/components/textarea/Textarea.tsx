@@ -5,7 +5,7 @@ import { BasicLabel } from "../label";
 export const TextArea = ({ label, value, onChange }: TextInputProps) => {
   return (
     <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-      <BasicLabel>{label}</BasicLabel>
+      <BasicLabel sx={{ textAlign: "right" }}>{label}</BasicLabel>
       <TextField
         fullWidth
         multiline

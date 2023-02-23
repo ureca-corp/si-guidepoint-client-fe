@@ -3,9 +3,7 @@ import { ArticlesWrapper } from "../../common/components/template";
 import {
   AddressArticle,
   AssistanceArticle,
-  BillingArticle,
   ContactArticle,
-  EmptyArticle,
   ParticipationArticle,
   PersonalArticle,
   PhysicalArticle,
@@ -24,11 +22,7 @@ export const ProfileSection = () => {
       </ArticlesWrapper>
       <ArticlesWrapper>
         <AddressArticle />
-        <BillingArticle />
-      </ArticlesWrapper>
-      <ArticlesWrapper>
         <PhysicalArticle />
-        <EmptyArticle />
       </ArticlesWrapper>
     </Stack>
   );

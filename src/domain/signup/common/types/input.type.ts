@@ -6,6 +6,7 @@ export type TextInputProps = {
   label: string;
   value: string;
   onChange: (v: string) => void;
+  isVertical?: boolean;
 };
 
 export type CheckboxProps = {
@@ -17,4 +18,8 @@ export type CheckboxProps = {
 export type SelectProps = {
   value: string;
   onChange: (v: string) => void;
+};
+
+export type ButtonProps = {
+  onClick: () => void;
 };

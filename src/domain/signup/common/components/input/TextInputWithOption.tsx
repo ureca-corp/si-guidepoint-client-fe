@@ -14,7 +14,7 @@ export const TextInputWithOption = ({
 }: TextInputWithOptionProps) => {
   return (
     <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-      <BasicLabel>{textProps.label}</BasicLabel>
+      <BasicLabel sx={{ textAlign: "right" }}>{textProps.label}</BasicLabel>
       <Stack direction="row" width="100%" alignItems={"center"} spacing="4px">
         <TextField
           value={textProps.value}

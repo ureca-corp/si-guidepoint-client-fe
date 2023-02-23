@@ -15,7 +15,7 @@ export const TextInputWithCheckbox = ({
   return (
     <Stack>
       <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-        <BasicLabel>{textProps.label}</BasicLabel>
+        <BasicLabel sx={{ textAlign: "right" }}>{textProps.label}</BasicLabel>
         <TextField
           fullWidth
           value={textProps.value}

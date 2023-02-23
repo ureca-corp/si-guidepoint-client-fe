@@ -22,7 +22,7 @@ export const FullSelection = ({
 }: FullSelectionType) => {
   return (
     <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-      <BasicLabel>
+      <BasicLabel sx={{ textAlign: "right" }}>
         {captionEnabled && `*`}
         {label}
       </BasicLabel>
