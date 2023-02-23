@@ -1,7 +1,7 @@
 import { LoginView } from "@/domian/login";
 import type { NextPage } from "next";
 
-const Main: NextPage = () => {
+const LoginPage: NextPage = () => {
   return (
     <div>
       <LoginView />
@@ -9,4 +9,4 @@ const Main: NextPage = () => {
   );
 };
 
-export default Main;
+export default LoginPage;

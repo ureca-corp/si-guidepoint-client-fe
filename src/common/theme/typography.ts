@@ -5,6 +5,7 @@ const baseTypographyOptions: TypographyOptions = {
   fontFamily: "Pretendard",
   allVariants: {
     color: LightColor.TextColor1,
+    whiteSpace: "pre-wrap",
   },
   body1: {
     fontWeight: "300",
