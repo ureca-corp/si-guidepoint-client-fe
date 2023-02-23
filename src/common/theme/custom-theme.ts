@@ -1,10 +1,11 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { useMemo, useState } from "react";
-import { LightColor } from "./colors";
+import { LightColor, lightPalette } from "./colors";
 import { ScreenType } from "./screen";
 import { lightTypographyOptions } from "./typography";
 
 export const lightTheme = createTheme({
+  palette: lightPalette,
   typography: lightTypographyOptions,
   breakpoints: {
     values: {
@@ -38,6 +39,17 @@ export const lightTheme = createTheme({
         },
       },
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          transition: "all 0.3s ease-in-out",
+
+          "&:hover": {
+            color: LightColor.PrimaryColor2,
+          },
+        },
+      },
+    },
     MuiCard: {
       defaultProps: {
         elevation: 0,
@@ -45,6 +57,33 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           border: `1px solid ${LightColor.BorderColor2}`,
+        },
+      },
+    },
+    MuiAccordion: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          boxShadow: `0px 0px 2px ${LightColor.BorderColor1}`,
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: `${LightColor.BorderColor1} !important`,
+
+            transition: "border-color 0.3s ease-in-out",
+          },
+
+          "&:hover": {
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: `${LightColor.PrimaryColor3} !important`,
+            },
+          },
         },
       },
     },
