@@ -1,3 +1,5 @@
+import { PaletteOptions } from "@mui/material";
+
 export enum BlueGreyColors {
   Shade900 = "#263238",
   Shade800 = "#37474F",
@@ -12,6 +14,10 @@ export enum BlueGreyColors {
 }
 
 export enum LightColor {
+  PrimaryColor1 = "#2951D7",
+  PrimaryColor2 = "#2951D7dd",
+  PrimaryColor3 = "#2951D7bb",
+
   BorderColor1 = "#e0e0e0",
   BorderColor2 = "#e0e0e099",
 
@@ -23,3 +29,13 @@ export enum LightColor {
 
   White = "#fff",
 }
+
+export const lightPalette: PaletteOptions = {
+  primary: {
+    main: LightColor.PrimaryColor2,
+  },
+  text: {
+    primary: LightColor.TextColor1,
+    secondary: LightColor.TextColor1,
+  },
+};
