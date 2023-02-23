@@ -1,3 +1,4 @@
+import { LightColor } from "@/common/theme/colors";
 import { MediaQueries } from "@/common/theme/screen";
 import { css } from "@emotion/react";
 import { LockRounded, MailOutlineRounded } from "@mui/icons-material";
@@ -8,18 +9,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import Link from "next/link";
+import { useLoginView } from "./UseLoginVIew";
 
 export const LoginView = () => {
-  const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
-  const handlePwChange = (value: string) => {
-    setPw(value);
-  };
-  const isFilled = email !== "" && pw !== "";
+  const { email, handleEmailChange, pw, handlePwChange, isFilled } =
+    useLoginView();
 
   return (
     <div css={sx.root}>
@@ -32,6 +27,7 @@ export const LoginView = () => {
         </div>
 
         <TextField
+          value={email}
           onChange={(e) => handleEmailChange(e.target.value)}
           css={sx.input}
           label="이메일 입력"
@@ -46,6 +42,7 @@ export const LoginView = () => {
 
         <TextField
           type="password"
+          value={pw}
           onChange={(e) => handlePwChange(e.target.value)}
           css={sx.input}
           label="비밀번호 입력"
@@ -57,6 +54,14 @@ export const LoginView = () => {
             ),
           }}
         />
+        <Link style={{ textDecoration: "none" }} href="/password-request">
+          <div css={sx.forgotPassword}>
+            <Typography variant={"body2"}>
+              {"비밀번호를 잊으셨나요?"}
+            </Typography>
+          </div>
+        </Link>
+
         <Button disabled={!isFilled} css={sx.button} variant="contained">
           LOGIN
         </Button>
@@ -91,6 +96,12 @@ const sx = {
   `,
   input: css`
     margin-bottom: 20px;
+  `,
+  forgotPassword: css`
+    text-align: center;
+    color: ${LightColor.MainSurfaceColor};
+    margin-bottom: 20px;
+    cursor: pointer;
   `,
   button: css`
     padding: 12px;
