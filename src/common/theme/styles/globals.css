@@ -1,7 +1,9 @@
 @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
 
 * {
   box-sizing: border-box;
+  font-family: "Pretendard" !important;
 }
 
 html,
