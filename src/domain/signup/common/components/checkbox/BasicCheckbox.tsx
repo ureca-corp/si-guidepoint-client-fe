@@ -12,13 +12,13 @@ export const BasicCheckbox = ({
   onChange,
 }: BasicCheckboxProps) => {
   return (
-    <Stack direction="row" width="100%" alignItems="center">
+    <Stack direction="row" width={"auto"} alignItems="center">
       <Checkbox
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         inputProps={{ "aria-label": "controlled" }}
       />
-      <Typography>{checkLabel}</Typography>
+      <Typography whiteSpace={"pre"}>{checkLabel}</Typography>
     </Stack>
   );
 };
