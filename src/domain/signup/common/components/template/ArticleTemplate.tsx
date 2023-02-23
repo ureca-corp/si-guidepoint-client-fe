@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import { useState } from "react";
+import { TitleProps } from "../../types/input.type";
 import { ArticleTemplateProps } from "../../types/template.type";
 import { BasicCheckbox } from "../checkbox";
 import { Title } from "../Title";
@@ -16,16 +17,12 @@ export const ArticleTemplate = ({
       ) : (
         <Title title={title} />
       )}
-
       {children}
     </Stack>
   );
 };
 
-type TitleWithCheckboxProps = {
-  title: string;
-};
-const TitleWithCheckbox = ({ title }: TitleWithCheckboxProps) => {
+const TitleWithCheckbox = ({ title }: TitleProps) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckChange = (v: boolean) => {
     setIsChecked(v);

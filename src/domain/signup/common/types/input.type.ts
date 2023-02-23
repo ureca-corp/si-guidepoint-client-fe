@@ -1,3 +1,7 @@
+export type TitleProps = {
+  title: string;
+};
+
 export type TextInputProps = {
   label: string;
   value: string;
