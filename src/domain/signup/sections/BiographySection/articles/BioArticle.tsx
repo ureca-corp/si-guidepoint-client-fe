@@ -1,10 +1,10 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { UseBioArticle } from "../hooks/UseBioArticle";
+import { useBioSection } from "../hooks/useBioSecion";
 
 export const BioArticle = () => {
-  const { text, handleTextChange } = UseBioArticle();
+  const { text, handleTextChange } = useBioSection();
 
   console.log(text);
   return (
@@ -22,6 +22,7 @@ export const BioArticle = () => {
         authored various bestsellig books inclluding "XXX" and "XXX".
       </Typography>
       <TextField
+        inputProps={{ maxLength: 5 }}
         value={text}
         onChange={(e) => handleTextChange(e.target.value)}
         multiline

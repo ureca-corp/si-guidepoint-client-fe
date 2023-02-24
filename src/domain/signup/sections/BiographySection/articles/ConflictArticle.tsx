@@ -1,10 +1,10 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { Button, TextField, Typography } from "@mui/material";
-import { UseConflictArticle } from "../hooks/UseConflictArticle";
 import { css } from "@emotion/react";
+import { useBioSection } from "../hooks/useBioSecion";
 
 export const ConflictArticle = () => {
-  const { text, handleTextChange } = UseConflictArticle();
+  const { link, text, handleTextChange } = useBioSection();
 
   return (
     <div css={sx.root}>

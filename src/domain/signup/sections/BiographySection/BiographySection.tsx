@@ -1,12 +1,20 @@
 import { css } from "@emotion/react";
 import { Stack } from "@mui/system";
-import { BioArticle, ConflictArticle, LinkArticle } from "./articles";
+import {
+  BioArticle,
+  ConflictArticle,
+  ResumeArticle,
+  ProfileLinkArticle,
+  SocialMediaLinkArticle,
+} from "./articles";
 
 export const BiographySection = () => {
   return (
-    <Stack>
+    <Stack spacing="2.77vw">
       <BioArticle />
-      <LinkArticle />
+      <ProfileLinkArticle />
+      <SocialMediaLinkArticle />
+      <ResumeArticle />
       <ConflictArticle />
     </Stack>
   );
