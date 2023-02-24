@@ -1,0 +1,1 @@
+export { ManageMemberView } from "./ManageMemberView";
