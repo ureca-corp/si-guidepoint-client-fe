@@ -26,6 +26,15 @@ export const ConflictArticle = () => {
           rows={8}
         />
       </ArticleTemplate>
+      <Button css={sx.submitButton} variant="contained" onClick={() => null}>
+        Submit
+      </Button>
     </div>
   );
+};
+
+const sx = {
+  submitButton: css`
+    margin-top: 20px;
+  `,
 };
