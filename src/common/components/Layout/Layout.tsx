@@ -11,8 +11,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <Stack css={sx.root}>
       <CustomAppbar />
-
-      <Stack css={sx.inner}>
+      <Stack direction="row" width="100%" height="100%" paddingX={"20px"}>
         <main css={sx.main}>{children}</main>
       </Stack>
     </Stack>
@@ -29,11 +28,5 @@ const sx = {
   main: css`
     width: 100%;
     height: 100%;
-  `,
-  inner: css`
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    padding: 0 20px;
   `,
 };
