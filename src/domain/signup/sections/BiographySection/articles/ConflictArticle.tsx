@@ -7,7 +7,7 @@ export const ConflictArticle = () => {
   const { link, text, handleTextChange } = useBioSection();
 
   return (
-    <div css={sx.root}>
+    <div>
       <ArticleTemplate title="Compliance Conflicts">
         <Typography>
           Out records indicate that you have listed the folling restrictions or
@@ -26,18 +26,6 @@ export const ConflictArticle = () => {
           rows={8}
         />
       </ArticleTemplate>
-      <Button css={sx.submitButton} variant="contained" onClick={() => null}>
-        Submit
-      </Button>
     </div>
   );
-};
-
-const sx = {
-  root: css`
-    margin-top: 40px;
-  `,
-  submitButton: css`
-    margin-top: 20px;
-  `,
 };

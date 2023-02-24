@@ -16,8 +16,4 @@ export const ProfileLinkArticle = () => {
   );
 };
 
-const sx = {
-  uploadButton: css`
-    margin-top: 20px;
-  `,
-};
+const sx = {};
