@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import { css } from "@emotion/react";
 import { UseTermsForm } from "@/common/components/terms-form/UseTermsForm";
 
-export const CreateTermsView = () => {
+export const UpdateTermsView = () => {
   const {
     title,
     content,
@@ -16,7 +16,7 @@ export const CreateTermsView = () => {
   } = UseTermsForm();
   return (
     <div css={sx.root}>
-      <Typography variant={"h4"}>이용약관 작성</Typography>
+      <Typography variant={"h4"}>이용약관 수성</Typography>
       <div css={sx.detail}>
         <Typography variant={"h6"}>상세보기</Typography>
       </div>

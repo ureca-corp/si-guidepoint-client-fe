@@ -2,20 +2,27 @@ import { Button, Card, Checkbox, TextField, Typography } from "@mui/material";
 import { css } from "@emotion/react";
 import { useState } from "react";
 
-export const TermsForm = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
-  const handleTitleChange = (value: string) => {
-    setTitle(value);
-  };
-  const handleCotentChange = (value: string) => {
-    setContent(value);
-  };
-  const handleCheckBox = (value: boolean) => {
-    setIsChecked(value);
-  };
+type TermsFormProps = {
+  title: string;
+  content: string;
+  isChecked: boolean;
+  handleTitleChange: (value: string) => void;
+  handleCotentChange: (value: string) => void;
+  handleCheckBox: (checked: boolean) => void;
+  handleSubmit: () => void;
+  submitButtonDisabled: boolean;
+};
 
+export const TermsForm = ({
+  title,
+  content,
+  isChecked,
+  handleTitleChange,
+  handleCotentChange,
+  handleCheckBox,
+  handleSubmit,
+  submitButtonDisabled,
+}: TermsFormProps) => {
   return (
     <div>
       <Card css={sx.card}>
@@ -49,12 +56,20 @@ export const TermsForm = () => {
             <div css={sx.listTitle}>
               <Typography variant={"h6"}>필수 여부</Typography>
             </div>
-            <Checkbox onClick={(e) => handleCheckBox(e.target.value)} />
+            <Checkbox
+              checked={isChecked}
+              onChange={(e) => handleCheckBox(e.target.checked)}
+            />
           </li>
         </ul>
         <div css={sx.buttonWrap}>
           <Button variant="outlined">취소</Button>
-          <Button css={sx.btn} variant="contained">
+          <Button
+            disabled={submitButtonDisabled}
+            onClick={handleSubmit}
+            css={sx.btn}
+            variant="contained"
+          >
             등록
           </Button>
         </div>
