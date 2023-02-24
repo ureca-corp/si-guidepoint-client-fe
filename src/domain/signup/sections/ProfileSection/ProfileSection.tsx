@@ -4,6 +4,7 @@ import {
   AddressArticle,
   AssistanceArticle,
   ContactArticle,
+  EmptyArticle,
   ParticipationArticle,
   PersonalArticle,
   PhysicalArticle,
@@ -21,8 +22,8 @@ export const ProfileSection = () => {
         <ParticipationArticle />
       </ArticlesWrapper>
       <ArticlesWrapper>
-        <AddressArticle />
         <PhysicalArticle />
+        <EmptyArticle />
       </ArticlesWrapper>
     </Stack>
   );
