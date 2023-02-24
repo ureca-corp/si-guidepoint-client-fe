@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <RecoilRoot>
         <ThemeProvider theme={findTheme(ThemeTypes.Light)}>
           <Layout>
-            <Component {...pageProps} />s
+            <Component {...pageProps} />
           </Layout>
         </ThemeProvider>
       </RecoilRoot>
