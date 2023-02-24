@@ -1,4 +1,4 @@
-import { ManageMemberView } from "@/domian/manage-member";
+import { ManageMemberView } from "@/domain/manage-member";
 import type { NextPage } from "next";
 
 const Main: NextPage = () => {

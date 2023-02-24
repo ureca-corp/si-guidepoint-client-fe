@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { useLoginView } from "./UseLoginVIew";
+import { useLoginView } from "./useLoginView";
 
 export const LoginView = () => {
   const { email, handleEmailChange, pw, handlePwChange, isFilled } =

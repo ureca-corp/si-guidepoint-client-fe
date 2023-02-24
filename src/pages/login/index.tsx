@@ -1,4 +1,4 @@
-import { LoginView } from "@/domian/login";
+import { LoginView } from "@/domain/login";
 import type { NextPage } from "next";
 
 const LoginPage: NextPage = () => {
