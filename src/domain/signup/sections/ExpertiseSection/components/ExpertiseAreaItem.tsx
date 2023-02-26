@@ -55,5 +55,6 @@ const sx = {
     gap: 1.11vw;
     border: 1px solid ${LightColor.BorderColor1};
     padding: 1.11vw;
+    border-radius: 12px;
   `,
 };

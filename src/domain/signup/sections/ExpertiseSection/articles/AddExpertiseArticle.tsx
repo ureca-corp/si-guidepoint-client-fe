@@ -6,7 +6,9 @@ export const AddExpertiseArticle = () => {
   return (
     <ArticleWithDescTemplate
       title="Expertise"
-      desc={"Please spcity your area of expertise."}
+      desc={
+        "Please spcity your area of expertise.\n\nPrimary Area of Expertise"
+      }
     >
       <ExpertiseAreaItem
         sectorProps={{ value: "Mr", onChange: () => null }}

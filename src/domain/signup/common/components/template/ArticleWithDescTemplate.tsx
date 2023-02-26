@@ -8,9 +8,9 @@ export const ArticleWithDescTemplate = ({
   children,
 }: ArticleWithDescTemplateProps) => {
   return (
-    <Stack width={"100%"}>
+    <Stack width={"100%"} spacing="1.11vw">
       <Title title={title} />
-      <Typography>{desc}</Typography>
+      <Typography whiteSpace={"break-spaces"}>{desc}</Typography>
       {children}
     </Stack>
   );
