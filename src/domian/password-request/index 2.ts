@@ -1,1 +1,0 @@
-export { PasswordRequestView } from "./PasswordRequestView";

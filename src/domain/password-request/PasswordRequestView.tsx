@@ -1,11 +1,4 @@
-import {
-  Button,
-  Card,
-  Input,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Card, Stack, TextField, Typography } from "@mui/material";
 import { css } from "@emotion/react";
 import logo from "@/password-logo.png";
 import Image from "next/image";
