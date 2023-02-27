@@ -11,7 +11,7 @@ export const TextInput = ({
   return (
     <Stack
       direction={isVertical ? "column" : "row"}
-      spacing="1.11vw"
+      spacing={isVertical ? "0.55vw" : "1.11vw"}
       alignItems={"center"}
     >
       <BasicLabel sx={{ textAlign: isVertical ? "left" : "right" }}>

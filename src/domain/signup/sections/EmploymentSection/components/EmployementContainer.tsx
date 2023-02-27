@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { AddItemButton } from "./AddItemButton";
+import { AddItemButton } from "../../../common/components/button/AddItemButton";
 import { EmploymentItem } from "./EmploymentItem";
 
 export const EmploymentContainer = () => {

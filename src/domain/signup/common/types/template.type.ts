@@ -5,3 +5,7 @@ export interface ArticleTemplateProps {
   children: ReactNode;
   checkboxEanabled?: boolean;
 }
+
+export interface ArticleWithDescTemplateProps extends ArticleTemplateProps {
+  desc: string;
+}

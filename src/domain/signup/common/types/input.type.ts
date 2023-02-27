@@ -1,13 +1,14 @@
 export type TitleProps = {
   title: string;
 };
-
-export type TextInputProps = {
-  label: string;
+export interface TextProps {
   value: string;
   onChange: (v: string) => void;
+}
+export interface TextInputProps extends TextProps {
+  label: string;
   isVertical?: boolean;
-};
+}
 
 export type CheckboxProps = {
   label: string;
@@ -23,3 +24,9 @@ export type SelectProps = {
 export type ButtonProps = {
   onClick: () => void;
 };
+
+export interface TextareaProps extends TextProps {
+  label: string;
+  row?: number;
+  isVertical?: boolean;
+}
