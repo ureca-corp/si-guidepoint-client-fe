@@ -12,7 +12,7 @@ import {
 
 export const ProfileSection = () => {
   return (
-    <Stack width="100%" paddingY="2.77vw" spacing="2.77vw">
+    <Stack width="100%" spacing="2.77vw">
       <ArticlesWrapper>
         <PersonalArticle />
         <AssistanceArticle />
