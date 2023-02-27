@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
 import { Stack } from "@mui/system";
+import { SubmitButton } from "../../common/components/button/SubmitButton";
 import {
   BioArticle,
   ConflictArticle,
@@ -7,15 +7,19 @@ import {
   ProfileLinkArticle,
   SocialMediaLinkArticle,
 } from "./articles";
+import { useBioSection } from "./hooks/useBiographySection";
 
 export const BiographySection = () => {
+  const { state } = useBioSection();
+
   return (
     <Stack spacing="2.77vw">
-      <BioArticle />
-      <ProfileLinkArticle />
-      <SocialMediaLinkArticle />
+      <BioArticle props={state.biography} />
+      <ProfileLinkArticle props={state.link} />
+      <SocialMediaLinkArticle props={state.hyperlink} />
       <ResumeArticle />
-      <ConflictArticle />
+      <ConflictArticle props={state.compliance} />
+      <SubmitButton onClick={state.submit.onSubmit} />
     </Stack>
   );
 };

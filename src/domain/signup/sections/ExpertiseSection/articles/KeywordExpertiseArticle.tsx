@@ -1,7 +1,9 @@
 import { ArticleWithDescTemplate } from "@/domain/signup/common/components/template/ArticleWithDescTemplate";
 import { TextArea } from "@/domain/signup/common/components/textarea";
+import { useKeywordExpertiseArticle } from "../hooks/useKeywordExpertiseArticle";
 
 export const KeywordExpertiseArticle = () => {
+  const { state } = useKeywordExpertiseArticle();
   return (
     <ArticleWithDescTemplate
       title={""}
@@ -11,36 +13,36 @@ export const KeywordExpertiseArticle = () => {
     >
       <TextArea
         label={"Drugs & Technology"}
-        value={""}
-        onChange={() => null}
+        value={state.drugs.value}
+        onChange={state.drugs.onChange}
         row={2}
         isVertical
       />
       <TextArea
         label={"Research Interests"}
-        value={""}
-        onChange={() => null}
+        value={state.research.value}
+        onChange={state.research.onChange}
         row={2}
         isVertical
       />
       <TextArea
         label={"Board Certifications"}
-        value={""}
-        onChange={() => null}
+        value={state.certifications.value}
+        onChange={state.certifications.onChange}
         row={2}
         isVertical
       />
       <TextArea
         label={"Company Experience"}
-        value={""}
-        onChange={() => null}
+        value={state.company.value}
+        onChange={state.company.onChange}
         row={2}
         isVertical
       />
       <TextArea
         label={"Product Experience"}
-        value={""}
-        onChange={() => null}
+        value={state.product.value}
+        onChange={state.product.onChange}
         row={2}
         isVertical
       />

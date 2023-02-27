@@ -1,16 +1,17 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { TextProps } from "@/domain/signup/common/types/input.type";
 import { TextField } from "@mui/material";
-import { css } from "@emotion/react";
-import { useBioSection } from "../hooks/useBioSecion";
 
-export const ProfileLinkArticle = () => {
-  //   const { link, handleLinkChange } = UseLinkArticle();
-  const { link, handleLinkChange } = useBioSection();
+type ArticleProps = {
+  props: TextProps;
+};
+
+export const ProfileLinkArticle = ({ props }: ArticleProps) => {
   return (
     <ArticleTemplate title="Hyperlink to Linked-in Profile">
       <TextField
-        value={link}
-        onChange={(e) => handleLinkChange(e.target.value)}
+        value={props.value}
+        onChange={(e) => props.onChange(e.target.value)}
       />
     </ArticleTemplate>
   );
