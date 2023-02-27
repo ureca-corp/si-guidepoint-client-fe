@@ -1,0 +1,1 @@
+export { ExpertiseAreaItem } from "./ExpertiseAreaItem";

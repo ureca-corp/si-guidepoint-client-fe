@@ -13,7 +13,7 @@ export const StartEndDateSelection = () => {
         id="1111"
         width={"100%"}
         alignItems={"flex-start"}
-        spacing="1.11vw"
+        spacing="0.55vw"
       >
         <Typography whiteSpace={"pre"}>{"Start Date"}</Typography>
         <Stack direction="row" width="100%" spacing="0.5vw">
@@ -41,7 +41,7 @@ export const StartEndDateSelection = () => {
           </FormControl>
         </Stack>
       </Stack>
-      <Stack width={"100%"} alignItems={"flex-start"} spacing="1.11vw">
+      <Stack width={"100%"} alignItems={"flex-start"} spacing="0.55vw">
         <Typography whiteSpace={"pre"}>{"End Date"}</Typography>
         <Stack direction="row" width="100%" spacing="0.5vw">
           <FormControl sx={{ flex: 2 }}>
