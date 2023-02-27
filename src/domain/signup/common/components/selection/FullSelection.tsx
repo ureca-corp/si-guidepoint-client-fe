@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import {
   FormControl,
   FormHelperText,
@@ -11,7 +12,7 @@ type FullSelectionType = {
   label: string;
   value: string;
   onChange: (v: string) => void;
-  captionEnabled?: boolean;
+  isNecessary?: boolean;
   isVertical?: boolean;
 };
 
@@ -19,19 +20,21 @@ export const FullSelection = ({
   label,
   value,
   onChange,
-  captionEnabled = false,
+  isNecessary = false,
   isVertical = false,
 }: FullSelectionType) => {
+  const { isMedium } = useCustomMediaQuery();
   return (
     <Stack
-      direction={isVertical ? "column" : "row"}
+      direction={isMedium || isVertical ? "column" : "row"}
       spacing={isVertical ? "0.55vw" : "1.11vw"}
       alignItems={isVertical ? "flex-start" : "center"}
     >
-      <BasicLabel sx={{ textAlign: isVertical ? "left" : "right" }}>
-        {captionEnabled && `*`}
-        {label}
-      </BasicLabel>
+      <BasicLabel
+        isVertical={isVertical}
+        label={label}
+        isNecessary={isNecessary}
+      />
       <FormControl fullWidth>
         <Select
           value={value}
@@ -42,7 +45,7 @@ export const FullSelection = ({
           <MenuItem value="Ms">Ms</MenuItem>
           <MenuItem value="Mrs">Mrs</MenuItem>
         </Select>
-        {captionEnabled && <TimezoneHelperText />}
+        {isNecessary && <TimezoneHelperText />}
       </FormControl>
     </Stack>
   );

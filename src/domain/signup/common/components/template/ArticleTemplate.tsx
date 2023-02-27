@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack } from "@mui/material";
 import { useState } from "react";
 import { TitleProps } from "../../types/input.type";
@@ -10,8 +11,10 @@ export const ArticleTemplate = ({
   children,
   checkboxEanabled = false,
 }: ArticleTemplateProps) => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
-    <Stack width="100%" spacing="1.11vw">
+    <Stack width="100%" spacing={isMedium ? "20px" : "1.11vw"}>
       {checkboxEanabled ? (
         <TitleWithCheckbox title={title} />
       ) : (

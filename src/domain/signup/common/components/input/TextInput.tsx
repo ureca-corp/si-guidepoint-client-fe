@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack, TextField } from "@mui/material";
 import { TextInputProps } from "../../types/input.type";
 import { BasicLabel } from "../label";
@@ -8,15 +9,15 @@ export const TextInput = ({
   onChange,
   isVertical = false,
 }: TextInputProps) => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
     <Stack
-      direction={isVertical ? "column" : "row"}
+      direction={isMedium || isVertical ? "column" : "row"}
       spacing={isVertical ? "0.55vw" : "1.11vw"}
       alignItems={"center"}
     >
-      <BasicLabel sx={{ textAlign: isVertical ? "left" : "right" }}>
-        {label}
-      </BasicLabel>
+      <BasicLabel isVertical={isVertical} label={label} />
       <TextField
         fullWidth
         value={value}

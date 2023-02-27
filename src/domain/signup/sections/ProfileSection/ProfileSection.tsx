@@ -1,7 +1,7 @@
 import { Stack } from "@mui/system";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { ArticlesWrapper } from "../../common/components/template";
 import {
-  AddressArticle,
   AssistanceArticle,
   ContactArticle,
   EmptyArticle,
@@ -11,8 +11,9 @@ import {
 } from "./articles";
 
 export const ProfileSection = () => {
+  const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack width="100%" spacing="2.77vw">
+    <Stack width="100%" spacing={isMedium ? "5vw" : "2.77vw"}>
       <ArticlesWrapper>
         <PersonalArticle />
         <AssistanceArticle />

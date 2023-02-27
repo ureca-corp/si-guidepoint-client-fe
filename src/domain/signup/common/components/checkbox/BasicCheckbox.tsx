@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Checkbox, Stack, Typography } from "@mui/material";
 
 type BasicCheckboxProps = {
@@ -13,10 +14,11 @@ export const BasicCheckbox = ({
   onChange,
   isVertical = false,
 }: BasicCheckboxProps) => {
+  const { isMedium } = useCustomMediaQuery();
   return (
     <Stack
       direction={isVertical ? "column-reverse" : "row"}
-      width={"auto"}
+      width={isMedium ? "100%" : "auto"}
       alignItems={isVertical ? "flex-start" : "center"}
     >
       <Checkbox
@@ -24,7 +26,9 @@ export const BasicCheckbox = ({
         onChange={(e) => onChange(e.target.checked)}
         inputProps={{ "aria-label": "controlled" }}
       />
-      <Typography whiteSpace={"pre"}>{checkLabel}</Typography>
+      <Typography width={isMedium ? "100%" : "unset"} whiteSpace={"pre"}>
+        {checkLabel}
+      </Typography>
     </Stack>
   );
 };

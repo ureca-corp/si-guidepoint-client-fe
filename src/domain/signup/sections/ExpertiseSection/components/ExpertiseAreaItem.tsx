@@ -1,4 +1,5 @@
 import { LightColor } from "@/common/theme/colors";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
 import { SelectProps } from "@/domain/signup/common/types/input.type";
 import { css } from "@emotion/react";
@@ -13,8 +14,9 @@ type ExpertiseAreaItemProps = {
 };
 
 export const ExpertiseAreaItem = (p: ExpertiseAreaItemProps) => {
+  const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack css={sx.item}>
+    <Stack css={sx.item(isMedium)}>
       <FullSelection
         label={"Sector"}
         value={p.sectorProps.value}
@@ -50,11 +52,11 @@ export const ExpertiseAreaItem = (p: ExpertiseAreaItemProps) => {
 };
 
 const sx = {
-  item: css`
+  item: (isMedium: boolean) => css`
     width: 100%;
-    gap: 1.11vw;
+    gap: ${isMedium ? "20px" : "1.11vw"};
     border: 1px solid ${LightColor.BorderColor1};
-    padding: 1.11vw;
+    padding: ${isMedium ? "20px" : "1.11vw"};
     border-radius: 12px;
   `,
 };

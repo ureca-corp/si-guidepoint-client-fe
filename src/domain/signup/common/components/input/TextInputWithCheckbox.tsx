@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack, TextField } from "@mui/material";
 import { CheckboxProps, TextInputProps } from "../../types/input.type";
 import { BasicCheckbox } from "../checkbox";
@@ -12,10 +13,16 @@ export const TextInputWithCheckbox = ({
   textProps,
   checkboxProps,
 }: TextInputWithCheckboxProps) => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
     <Stack>
-      <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-        <BasicLabel sx={{ textAlign: "right" }}>{textProps.label}</BasicLabel>
+      <Stack
+        direction={isMedium ? "column" : "row"}
+        spacing="1.11vw"
+        alignItems={"center"}
+      >
+        <BasicLabel isVertical={false} label={textProps.label} />
         <TextField
           fullWidth
           value={textProps.value}
@@ -26,7 +33,7 @@ export const TextInputWithCheckbox = ({
         direction="row"
         spacing="1.11vw"
         alignItems={"center"}
-        paddingLeft="9.5vw"
+        paddingLeft={isMedium ? "0vw" : "9.5vw"}
       >
         <BasicCheckbox
           checkLabel={checkboxProps.label}

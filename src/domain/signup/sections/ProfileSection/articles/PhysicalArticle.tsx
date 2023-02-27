@@ -9,7 +9,7 @@ export const PhysicalArticle = () => {
   const { state } = useAddressArticle();
 
   return (
-    <ArticleTemplate title="Physical / Residence Address" checkboxEanabled>
+    <ArticleTemplate title="Physical / Residence Address">
       <TextArea
         label={"Sheet1"}
         value={state.sheet1.value}
@@ -50,7 +50,7 @@ export const PhysicalArticle = () => {
         label={"Time Zone"}
         value={state.timeZone.value}
         onChange={state.timeZone.onChange}
-        captionEnabled
+        isNecessary
       />
     </ArticleTemplate>
   );

@@ -55,6 +55,7 @@ export const ContactArticle = () => {
         label="IM Type"
         value={state.imType.value}
         onChange={state.imType.onChange}
+        isNecessary
       />
     </ArticleTemplate>
   );

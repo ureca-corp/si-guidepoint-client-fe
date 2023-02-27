@@ -5,13 +5,15 @@ import { LightColor } from "@/common/theme/colors";
 import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 
 export const EmploymentItem = () => {
+  const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack css={sx.item}>
+    <Stack css={sx.item(isMedium)}>
       <BasicCheckbox
-        isVertical
-        checkLabel={"Currently\nEmployed"}
+        isVertical={!isMedium}
+        checkLabel={isMedium ? "Currently Employed" : "Currently\nEmployed"}
         checked={true}
         onChange={() => null}
       />
@@ -28,22 +30,23 @@ export const EmploymentItem = () => {
         value="sdf"
         onChange={() => null}
       />
-      <StartEndDateSelection />
+      <StartEndDateSelection isVertical={isMedium} />
       <DeleteButton onClick={() => null} />
     </Stack>
   );
 };
 
 const sx = {
-  item: css`
+  item: (isMedium: boolean) => css`
     position: relative;
     width: 100%;
-    height: 160px;
+    height: ${isMedium ? "unset" : "160px"};
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: ${isMedium ? "column" : "row"};
+    align-items: ${isMedium ? "unset" : "flex-start"};
     justify-content: space-between;
-    padding: 1.11vw;
+    gap: ${isMedium ? "20px" : "unset"};
+    padding: ${isMedium ? "20px" : "1.11vw"};
     border: 1px solid ${LightColor.BorderColor1};
     border-radius: 12px;
   `,

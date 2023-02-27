@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { css } from "@emotion/react";
 import { FormControl, MenuItem, Select, Stack, TextField } from "@mui/material";
 import { SelectProps, TextInputProps } from "../../types/input.type";
@@ -12,9 +13,15 @@ export const TextInputWithOption = ({
   textProps,
   selectProps,
 }: TextInputWithOptionProps) => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
-    <Stack direction="row" spacing="1.11vw" alignItems={"center"}>
-      <BasicLabel sx={{ textAlign: "right" }}>{textProps.label}</BasicLabel>
+    <Stack
+      direction={isMedium ? "column" : "row"}
+      spacing="1.11vw"
+      alignItems={"center"}
+    >
+      <BasicLabel label={textProps.label} />
       <Stack direction="row" width="100%" alignItems={"center"} spacing="4px">
         <TextField
           value={textProps.value}

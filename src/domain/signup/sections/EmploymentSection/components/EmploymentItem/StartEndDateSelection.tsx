@@ -6,9 +6,19 @@ import {
   Typography,
 } from "@mui/material";
 
-export const StartEndDateSelection = () => {
+type StartEndDateSelectionProps = {
+  isVertical: boolean;
+};
+
+export const StartEndDateSelection = ({
+  isVertical,
+}: StartEndDateSelectionProps) => {
   return (
-    <Stack direction="row" width="40%" spacing="1.11vw">
+    <Stack
+      direction={isVertical ? "column" : "row"}
+      width={isVertical ? "100%" : "40%"}
+      spacing={isVertical ? "20px" : "1.11vw"}
+    >
       <Stack
         id="1111"
         width={"100%"}
@@ -16,7 +26,11 @@ export const StartEndDateSelection = () => {
         spacing="0.55vw"
       >
         <Typography whiteSpace={"pre"}>{"Start Date"}</Typography>
-        <Stack direction="row" width="100%" spacing="0.5vw">
+        <Stack
+          direction="row"
+          width="100%"
+          spacing={isVertical ? "12px" : "0.5vw"}
+        >
           <FormControl sx={{ flex: 2 }}>
             <Select
               value={"Mr"}
@@ -43,7 +57,11 @@ export const StartEndDateSelection = () => {
       </Stack>
       <Stack width={"100%"} alignItems={"flex-start"} spacing="0.55vw">
         <Typography whiteSpace={"pre"}>{"End Date"}</Typography>
-        <Stack direction="row" width="100%" spacing="0.5vw">
+        <Stack
+          direction="row"
+          width="100%"
+          spacing={isVertical ? "12px" : "0.5vw"}
+        >
           <FormControl sx={{ flex: 2 }}>
             <Select
               value={"Mr"}
