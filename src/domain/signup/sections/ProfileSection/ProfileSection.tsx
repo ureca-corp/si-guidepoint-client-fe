@@ -13,7 +13,7 @@ import {
 export const ProfileSection = () => {
   const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack width="100%" spacing={isMedium ? "5vw" : "2.77vw"}>
+    <Stack width="100%" spacing={isMedium ? "40px" : "2.77vw"}>
       <ArticlesWrapper>
         <PersonalArticle />
         <AssistanceArticle />
@@ -24,7 +24,7 @@ export const ProfileSection = () => {
       </ArticlesWrapper>
       <ArticlesWrapper>
         <PhysicalArticle />
-        <EmptyArticle />
+        {isMedium || <EmptyArticle />}
       </ArticlesWrapper>
     </Stack>
   );
