@@ -6,8 +6,14 @@ import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { DeleteButtonType, EmploymentItemType } from "../../types/item.type";
 
-export const EmploymentItem = () => {
+interface Props {
+  itemState: EmploymentItemType;
+  deleteButtonState: DeleteButtonType;
+}
+
+export const EmploymentItem = ({ itemState, deleteButtonState }: Props) => {
   const { isMedium } = useCustomMediaQuery();
   return (
     <Stack css={sx.item(isMedium)}>
@@ -17,21 +23,13 @@ export const EmploymentItem = () => {
         checked={true}
         onChange={() => null}
       />
-      <TextInput
-        isVertical
-        label="Employer"
-        value="sdf"
-        onChange={() => null}
-      />
-
-      <TextInput
-        isVertical
-        label="Employer"
-        value="sdf"
-        onChange={() => null}
-      />
+      <TextInput isVertical label="Employer" value="" onChange={() => null} />
+      <TextInput isVertical label="Job Title" value="" onChange={() => null} />
       <StartEndDateSelection isVertical={isMedium} />
-      <DeleteButton onClick={() => null} />
+
+      {deleteButtonState.isVisible && (
+        <DeleteButton onClick={() => deleteButtonState.onClick(itemState.id)} />
+      )}
     </Stack>
   );
 };

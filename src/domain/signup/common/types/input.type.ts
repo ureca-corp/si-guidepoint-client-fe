@@ -8,6 +8,7 @@ export interface TextProps {
 export interface TextInputProps extends TextProps {
   label: string;
   isVertical?: boolean;
+  isNecessary?: boolean;
 }
 
 export type CheckboxProps = {

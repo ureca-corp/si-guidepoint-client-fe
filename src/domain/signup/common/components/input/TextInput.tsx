@@ -8,6 +8,7 @@ export const TextInput = ({
   value,
   onChange,
   isVertical = false,
+  isNecessary = false,
 }: TextInputProps) => {
   const { isMedium } = useCustomMediaQuery();
 
@@ -20,7 +21,7 @@ export const TextInput = ({
       <BasicLabel isVertical={isVertical} label={label} />
       <TextField
         fullWidth
-        value={value}
+        value={isNecessary && "*" + value}
         onChange={(e) => onChange(e.target.value)}
       />
     </Stack>
