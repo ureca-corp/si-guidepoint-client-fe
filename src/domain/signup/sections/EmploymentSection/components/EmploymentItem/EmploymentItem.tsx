@@ -7,13 +7,23 @@ import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import { DeleteButtonType, EmploymentItemType } from "../../types/item.type";
+import { EmploymentTextInput } from "./EmploymentTextInput";
 
 interface Props {
   itemState: EmploymentItemType;
+  onItemChange: {
+    employer: (id: number, newTxt: string) => void;
+    job: (id: number, newTxt: string) => void;
+    date: (id: number, newTxt: string) => void;
+  };
   deleteButtonState: DeleteButtonType;
 }
 
-export const EmploymentItem = ({ itemState, deleteButtonState }: Props) => {
+export const EmploymentItem = ({
+  itemState,
+  onItemChange,
+  deleteButtonState,
+}: Props) => {
   const { isMedium } = useCustomMediaQuery();
   return (
     <Stack css={sx.item(isMedium)}>
@@ -23,8 +33,20 @@ export const EmploymentItem = ({ itemState, deleteButtonState }: Props) => {
         checked={true}
         onChange={() => null}
       />
-      <TextInput isVertical label="Employer" value="" onChange={() => null} />
-      <TextInput isVertical label="Job Title" value="" onChange={() => null} />
+      <EmploymentTextInput
+        isVertical
+        label={"Employer"}
+        id={itemState.id}
+        value={itemState.employer}
+        onTextChange={onItemChange.employer}
+      />
+      <EmploymentTextInput
+        isVertical
+        label="Job Title"
+        id={itemState.id}
+        value={itemState.job}
+        onTextChange={onItemChange.job}
+      />
       <StartEndDateSelection isVertical={isMedium} />
 
       {deleteButtonState.isVisible && (

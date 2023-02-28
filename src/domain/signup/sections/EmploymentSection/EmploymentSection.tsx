@@ -15,6 +15,7 @@ export const EmploymentSection = () => {
       />
       <EmploymentContainer
         itemsState={employmentItemState.list}
+        onItemChange={employmentItemState.onChange}
         buttonState={employmentItemState.deleteButton}
       />
       {addButton.isVisible && (

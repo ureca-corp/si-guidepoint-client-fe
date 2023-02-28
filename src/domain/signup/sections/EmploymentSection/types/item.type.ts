@@ -1,6 +1,7 @@
 export interface EmploymentItemType {
   id: number;
-  text: string;
+  employer: string;
+  job: string;
 }
 
 export interface DeleteButtonType {
