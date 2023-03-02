@@ -42,3 +42,10 @@ export interface TextareaProps extends TextProps {
   row?: number;
   isVertical?: boolean;
 }
+
+export interface BasicCheckboxProps {
+  checkLabel: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  isVertical?: boolean;
+}

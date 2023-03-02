@@ -2,6 +2,7 @@ import { TextProps } from "@/domain/signup/common/types/input.type";
 
 export interface EmploymentItemType {
   id: number;
+  isCurrEmployed: boolean;
   employer: string;
   job: string;
   startDate: {
@@ -35,6 +36,7 @@ export interface YearDateProps {
 }
 
 export interface EmploymentItemProps {
+  isCurrEmployed: (id: number, check: boolean) => void;
   employer: (id: number, newTxt: string) => void;
   job: (id: number, newTxt: string) => void;
   startDate: {

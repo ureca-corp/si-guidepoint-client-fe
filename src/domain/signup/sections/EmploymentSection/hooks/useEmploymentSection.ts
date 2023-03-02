@@ -14,6 +14,7 @@ export const useEmploymentSection = () => {
   const [employmentItems, setEmploymentItems] = useState<EmploymentItemType[]>([
     {
       id: 0,
+      isCurrEmployed: false,
       employer: "",
       job: "",
       startDate: { month: "", year: "" },
@@ -22,6 +23,15 @@ export const useEmploymentSection = () => {
   ]);
 
   // item functions
+  // 0. curr employed 수정
+  const handleCurrEmployedChange = (id: number, v: boolean) => {
+    const findIndex = employmentItems.findIndex((item) => item.id === id);
+    const copiedItems = [...employmentItems];
+
+    copiedItems[findIndex].isCurrEmployed = v;
+    setEmploymentItems(copiedItems);
+  };
+
   // 1. employer 수정
   const handleEmployerChange = (id: number, v: string) => {
     const findIndex = employmentItems.findIndex((item) => item.id === id);
@@ -84,6 +94,7 @@ export const useEmploymentSection = () => {
       ...old,
       {
         id: itemCount,
+        isCurrEmployed: false,
         employer: "",
         job: "",
         startDate: { month: "", year: "" },
@@ -108,6 +119,7 @@ export const useEmploymentSection = () => {
     employmentItemState: {
       list: employmentItems,
       onChange: {
+        isCurrEmployed: handleCurrEmployedChange,
         employer: handleEmployerChange,
         job: handleJobChange,
         startDate: {

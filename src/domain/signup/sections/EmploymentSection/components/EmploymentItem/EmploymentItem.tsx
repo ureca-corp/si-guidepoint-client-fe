@@ -11,6 +11,7 @@ import {
   EmploymentItemType,
 } from "../../types/item.type";
 import { EmploymentTextInput } from "./EmploymentTextInput";
+import { EmploymentCheckbox } from "./EmploymentCheckbox";
 
 interface Props {
   itemState: EmploymentItemType;
@@ -26,11 +27,12 @@ export const EmploymentItem = ({
   const { isMedium } = useCustomMediaQuery();
   return (
     <Stack css={sx.item(isMedium)}>
-      <BasicCheckbox
+      <EmploymentCheckbox
+        id={itemState.id}
         isVertical={!isMedium}
         checkLabel={isMedium ? "Currently Employed" : "Currently\nEmployed"}
-        checked={true}
-        onChange={() => null}
+        checked={itemState.isCurrEmployed}
+        onChange={onItemChange.isCurrEmployed}
       />
       <EmploymentTextInput
         isVertical
