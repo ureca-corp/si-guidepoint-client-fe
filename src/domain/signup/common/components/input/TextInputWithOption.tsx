@@ -34,9 +34,11 @@ export const TextInputWithOption = ({
             onChange={(e) => selectProps.onChange(e.target.value)}
             inputProps={{ "aria-label": "Without label" }}
           >
-            <MenuItem value="Mr">Mr</MenuItem>
-            <MenuItem value="Ms">Ms</MenuItem>
-            <MenuItem value="Mrs">Mrs</MenuItem>
+            {selectProps.options.map((it) => (
+              <MenuItem key={it} value={it}>
+                {it}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Stack>

@@ -30,6 +30,7 @@ export type CheckboxProps = {
 export type SelectProps = {
   value: string;
   onChange: (v: string) => void;
+  options: string[];
 };
 
 export type ButtonProps = {

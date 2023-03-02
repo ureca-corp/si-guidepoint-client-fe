@@ -1,52 +1,52 @@
 import { LightColor } from "@/common/theme/colors";
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
-import { SelectProps } from "@/domain/signup/common/types/input.type";
+import { TextInput } from "@/domain/signup/common/components/input/TextInput";
+import { TextProps } from "@/domain/signup/common/types/input.type";
 import { css } from "@emotion/react";
 import { Stack } from "@mui/material";
 
 type ExpertiseAreaItemProps = {
-  sectorProps: SelectProps;
-  industryProps: SelectProps;
-  businessProps: SelectProps;
-  departmentProps: SelectProps;
-  roleProps: SelectProps;
+  sectorProps: TextProps;
+  industryProps: TextProps;
+  businessProps: TextProps;
+  departmentProps: TextProps;
+  roleProps: TextProps;
 };
 
 export const ExpertiseAreaItem = (p: ExpertiseAreaItemProps) => {
   const { isMedium } = useCustomMediaQuery();
   return (
     <Stack css={sx.item(isMedium)}>
-      <FullSelection
+      <TextInput
         label={"Sector"}
         value={p.sectorProps.value}
         onChange={p.sectorProps.onChange}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <TextInput
         label={"Industry"}
         value={p.industryProps.value}
         onChange={p.industryProps.onChange}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <TextInput
         label={"Business Type"}
         value={p.businessProps.value}
         onChange={p.businessProps.onChange}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <TextInput
         label={"Department"}
         value={p.departmentProps.value}
         onChange={p.departmentProps.onChange}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <TextInput
         label={"Role"}
         value={p.roleProps.value}
         onChange={p.roleProps.onChange}
         isVertical
-      ></FullSelection>
+      />
     </Stack>
   );
 };

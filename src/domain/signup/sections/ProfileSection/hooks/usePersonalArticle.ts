@@ -1,3 +1,4 @@
+import { PREFIX_TYPE } from "@/common/enum/form.enum";
 import { useState } from "react";
 
 export const usePersonalArticle = () => {
@@ -6,6 +7,9 @@ export const usePersonalArticle = () => {
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [suffix, setSuffix] = useState("");
+
+  // prefix select options
+  const options = Object.values(PREFIX_TYPE);
 
   const handleFirstNameChange = (v: string) => {
     setFirstName(v);
@@ -32,6 +36,7 @@ export const usePersonalArticle = () => {
       prefix: {
         value: prefix,
         onChange: handlePrefixChange,
+        options: options,
       },
       firstName: {
         value: firstName,

@@ -1,19 +1,15 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack } from "@mui/material";
 import {
-  ButtonType,
   DeleteButtonType,
+  EmploymentItemProps,
   EmploymentItemType,
 } from "../types/item.type";
 import { EmploymentItem } from "./EmploymentItem";
 
 interface Props {
   itemsState: EmploymentItemType[];
-  onItemChange: {
-    employer: (id: number, newTxt: string) => void;
-    job: (id: number, newTxt: string) => void;
-    date: (id: number, newTxt: string) => void;
-  };
+  onItemChange: EmploymentItemProps;
   buttonState: DeleteButtonType;
 }
 

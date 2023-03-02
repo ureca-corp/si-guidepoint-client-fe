@@ -6,11 +6,19 @@ export const useEmploymentSection = () => {
   const [itemCount, setItemCount] = useState(1);
 
   const [sectorExperience, setSectorExperience] = useState("");
+
   const handleSectorExperienceChange = (v: string) => {
     setSectorExperience(v);
   };
+
   const [employmentItems, setEmploymentItems] = useState<EmploymentItemType[]>([
-    { id: 0, employer: "", job: "" },
+    {
+      id: 0,
+      employer: "",
+      job: "",
+      startDate: { month: "", year: "" },
+      endDate: { month: "", year: "" },
+    },
   ]);
 
   // item functions
@@ -32,12 +40,40 @@ export const useEmploymentSection = () => {
     setEmploymentItems(copiedItems);
   };
 
-  // 3. date 수정
-  const handleDateChange = (id: number, v: string) => {
+  // 3. start month 수정
+  const handleStartMonthChange = (id: number, v: string) => {
     const findIndex = employmentItems.findIndex((item) => item.id === id);
     const copiedItems = [...employmentItems];
 
-    copiedItems[findIndex].employer = v;
+    copiedItems[findIndex].startDate.month = v;
+    setEmploymentItems(copiedItems);
+    console.log("handleStartMonthChange");
+  };
+
+  // 4. start year 수정
+  const handleStartYearChange = (id: number, v: string) => {
+    const findIndex = employmentItems.findIndex((item) => item.id === id);
+    const copiedItems = [...employmentItems];
+
+    copiedItems[findIndex].startDate.year = v;
+    setEmploymentItems(copiedItems);
+  };
+
+  // 5. end month 수정
+  const handleEndMonthChange = (id: number, v: string) => {
+    const findIndex = employmentItems.findIndex((item) => item.id === id);
+    const copiedItems = [...employmentItems];
+
+    copiedItems[findIndex].endDate.month = v;
+    setEmploymentItems(copiedItems);
+  };
+
+  // 6. end year 수정
+  const handleEndYearChange = (id: number, v: string) => {
+    const findIndex = employmentItems.findIndex((item) => item.id === id);
+    const copiedItems = [...employmentItems];
+
+    copiedItems[findIndex].endDate.year = v;
     setEmploymentItems(copiedItems);
   };
 
@@ -46,7 +82,13 @@ export const useEmploymentSection = () => {
     setItemCount(itemCount + 1);
     setEmploymentItems((old) => [
       ...old,
-      { id: itemCount, employer: "", job: "" },
+      {
+        id: itemCount,
+        employer: "",
+        job: "",
+        startDate: { month: "", year: "" },
+        endDate: { month: "", year: "" },
+      },
     ]);
   }, [itemCount]);
 
@@ -68,7 +110,14 @@ export const useEmploymentSection = () => {
       onChange: {
         employer: handleEmployerChange,
         job: handleJobChange,
-        date: handleDateChange,
+        startDate: {
+          month: handleStartMonthChange,
+          year: handleStartYearChange,
+        },
+        endDate: {
+          month: handleEndMonthChange,
+          year: handleEndYearChange,
+        },
       },
       deleteButton: {
         onClick: onDeleteItem,

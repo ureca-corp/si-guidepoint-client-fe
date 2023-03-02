@@ -1,4 +1,3 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
 import { Stack } from "@mui/material";
 import { css } from "@emotion/react";
 import { LightColor } from "@/common/theme/colors";
@@ -6,16 +5,16 @@ import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { DeleteButtonType, EmploymentItemType } from "../../types/item.type";
+import {
+  DeleteButtonType,
+  EmploymentItemProps,
+  EmploymentItemType,
+} from "../../types/item.type";
 import { EmploymentTextInput } from "./EmploymentTextInput";
 
 interface Props {
   itemState: EmploymentItemType;
-  onItemChange: {
-    employer: (id: number, newTxt: string) => void;
-    job: (id: number, newTxt: string) => void;
-    date: (id: number, newTxt: string) => void;
-  };
+  onItemChange: EmploymentItemProps;
   deleteButtonState: DeleteButtonType;
 }
 
@@ -47,7 +46,30 @@ export const EmploymentItem = ({
         value={itemState.job}
         onTextChange={onItemChange.job}
       />
-      <StartEndDateSelection isVertical={isMedium} />
+      <StartEndDateSelection
+        id={itemState.id}
+        startDateState={{
+          month: {
+            value: itemState.startDate.month,
+            onChange: onItemChange.startDate.month,
+          },
+          year: {
+            value: itemState.startDate.year,
+            onChange: onItemChange.startDate.year,
+          },
+        }}
+        endDateState={{
+          month: {
+            value: itemState.endDate.month,
+            onChange: onItemChange.endDate.month,
+          },
+          year: {
+            value: itemState.endDate.year,
+            onChange: onItemChange.endDate.year,
+          },
+        }}
+        isVertical={isMedium}
+      />
 
       {deleteButtonState.isVisible && (
         <DeleteButton onClick={() => deleteButtonState.onClick(itemState.id)} />

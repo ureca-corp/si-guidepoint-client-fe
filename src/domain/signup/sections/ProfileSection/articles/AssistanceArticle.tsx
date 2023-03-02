@@ -6,7 +6,6 @@ import { useAssistantArticle } from "../hooks/useAssistantArticle";
 
 export const AssistanceArticle = () => {
   const { state } = useAssistantArticle();
-  const { isMedium } = useCustomMediaQuery();
 
   return (
     <ArticleTemplate title="Assistant Contact Information">

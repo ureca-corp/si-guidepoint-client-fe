@@ -1,3 +1,4 @@
+import { PREFIX_TYPE } from "@/common/enum/form.enum";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import {
   FormControl,
@@ -12,6 +13,8 @@ type FullSelectionType = {
   label: string;
   value: string;
   onChange: (v: string) => void;
+  options: string[];
+
   isNecessary?: boolean;
   isVertical?: boolean;
 };
@@ -20,10 +23,12 @@ export const FullSelection = ({
   label,
   value,
   onChange,
+  options,
   isNecessary = false,
   isVertical = false,
 }: FullSelectionType) => {
   const { isMedium } = useCustomMediaQuery();
+
   return (
     <Stack
       direction={isMedium || isVertical ? "column" : "row"}
@@ -41,9 +46,11 @@ export const FullSelection = ({
           onChange={(e) => onChange(e.target.value)}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="Mr">Mr</MenuItem>
-          <MenuItem value="Ms">Ms</MenuItem>
-          <MenuItem value="Mrs">Mrs</MenuItem>
+          {options.map((it, index) => (
+            <MenuItem key={index} value={it}>
+              {it}
+            </MenuItem>
+          ))}
         </Select>
         {isNecessary && <TimezoneHelperText />}
       </FormControl>

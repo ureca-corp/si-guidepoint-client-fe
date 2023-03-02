@@ -15,7 +15,7 @@ export const TextInput = ({
     <Stack
       direction={isMedium || isVertical ? "column" : "row"}
       spacing={isVertical ? "0.55vw" : "1.11vw"}
-      alignItems={"center"}
+      alignItems={isVertical ? "left" : "center"}
     >
       <BasicLabel isVertical={isVertical} label={label} />
       <TextField

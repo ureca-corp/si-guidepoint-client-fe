@@ -1,3 +1,4 @@
+import { ExperienceYearModels } from "@/common/models/input.model";
 import { FullSelection } from "../../common/components/selection/FullSelection";
 import { ArticleTemplate } from "../../common/components/template";
 import { AddItemButton, EmploymentContainer } from "./components";
@@ -12,6 +13,7 @@ export const EmploymentSection = () => {
         label={"Years of Sector Experience"}
         value={sectorExperienceState.value}
         onChange={sectorExperienceState.onChange}
+        options={ExperienceYearModels}
       />
       <EmploymentContainer
         itemsState={employmentItemState.list}
