@@ -1,12 +1,8 @@
-import { PasswordRequestView } from "@/domian/password-request";
+import { PasswordRequestView } from "@/domain/password-request";
 import type { NextPage } from "next";
 
-const Main: NextPage = () => {
-  return (
-    <div>
-      <PasswordRequestView />
-    </div>
-  );
+const PasswordRequestPage: NextPage = () => {
+  return <PasswordRequestView />;
 };
 
-export default Main;
+export default PasswordRequestPage;
