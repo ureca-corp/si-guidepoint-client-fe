@@ -2,7 +2,7 @@ import { PREFIX_TYPE } from "@/common/enum/form.enum";
 import { useState } from "react";
 
 export const usePersonalArticle = () => {
-  const [prefix, setPrefix] = useState("Mr");
+  const [prefix, setPrefix] = useState("Mr.");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");

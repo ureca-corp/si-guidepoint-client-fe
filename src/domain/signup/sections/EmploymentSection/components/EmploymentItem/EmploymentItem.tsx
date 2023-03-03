@@ -1,7 +1,6 @@
 import { Stack } from "@mui/material";
 import { css } from "@emotion/react";
 import { LightColor } from "@/common/theme/colors";
-import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";

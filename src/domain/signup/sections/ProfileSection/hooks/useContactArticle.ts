@@ -10,8 +10,8 @@ export const useContactArticle = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [im, setIm] = useState("");
   const [imType, setImType] = useState("");
-  const [phoneOption, setPhoneOption] = useState("Mr");
-  const [alterPhoneOption, setAlterPhoneOption] = useState("Mr");
+  const [phoneOption, setPhoneOption] = useState("");
+  const [alterPhoneOption, setAlterPhoneOption] = useState("");
 
   //  select options
   const imOptions = Object.values(IM_TYPE);

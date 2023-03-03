@@ -1,50 +1,52 @@
 import { LightColor } from "@/common/theme/colors";
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { TextProps } from "@/domain/signup/common/types/input.type";
 import { css } from "@emotion/react";
 import { Stack } from "@mui/material";
+import { EmploymentTextInput } from "../../EmploymentSection/components/EmploymentItem/EmploymentTextInput";
+import { ExpertiseItemProps, ExpertiseItemType } from "../types/item.type";
 
-type ExpertiseAreaItemProps = {
-  sectorProps: TextProps;
-  industryProps: TextProps;
-  businessProps: TextProps;
-  departmentProps: TextProps;
-  roleProps: TextProps;
-};
+interface Props {
+  itemState: ExpertiseItemType;
+  onItemChange: ExpertiseItemProps;
+}
 
-export const ExpertiseAreaItem = (p: ExpertiseAreaItemProps) => {
+export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
   const { isMedium } = useCustomMediaQuery();
   return (
     <Stack css={sx.item(isMedium)}>
-      <TextInput
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Sector"}
-        value={p.sectorProps.value}
-        onChange={p.sectorProps.onChange}
+        value={itemState.sector}
+        onTextChange={onItemChange.sector}
         isVertical
       />
-      <TextInput
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Industry"}
-        value={p.industryProps.value}
-        onChange={p.industryProps.onChange}
+        value={itemState.industry}
+        onTextChange={onItemChange.industry}
         isVertical
       />
-      <TextInput
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Business Type"}
-        value={p.businessProps.value}
-        onChange={p.businessProps.onChange}
+        value={itemState.businessType}
+        onTextChange={onItemChange.businessType}
         isVertical
       />
-      <TextInput
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Department"}
-        value={p.departmentProps.value}
-        onChange={p.departmentProps.onChange}
+        value={itemState.department}
+        onTextChange={onItemChange.department}
         isVertical
       />
-      <TextInput
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Role"}
-        value={p.roleProps.value}
-        onChange={p.roleProps.onChange}
+        value={itemState.role}
+        onTextChange={onItemChange.role}
         isVertical
       />
     </Stack>
