@@ -1,4 +1,4 @@
-import { PREFIX_TYPE } from "@/common/enum/form.enum";
+import { PREFIX_TYPE } from "@/common/models/enum/form.enum";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import {
   FormControl,

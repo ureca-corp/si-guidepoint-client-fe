@@ -1,4 +1,4 @@
-import { IM_TYPE, PHONE_TYPE } from "@/common/enum/form.enum";
+import { IM_TYPE, PHONE_TYPE } from "@/common/models/enum/form.enum";
 import { useState } from "react";
 
 export const useContactArticle = () => {

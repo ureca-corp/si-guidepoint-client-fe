@@ -9,9 +9,12 @@ import {
   PersonalArticle,
   PhysicalArticle,
 } from "./articles";
+import { useFetchTerms } from "@/infra/terms/hooks/useFetchTerms";
 
 export const ProfileSection = () => {
   const { isMedium } = useCustomMediaQuery();
+  const { data } = useFetchTerms();
+  console.log(data);
   return (
     <Stack width="100%" spacing={isMedium ? "40px" : "2.77vw"}>
       <ArticlesWrapper>
