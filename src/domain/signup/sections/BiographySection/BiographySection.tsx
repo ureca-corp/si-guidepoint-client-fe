@@ -1,3 +1,4 @@
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack } from "@mui/system";
 import { SubmitButton } from "../../common/components/button/SubmitButton";
 import {
@@ -11,9 +12,10 @@ import { useBioSection } from "./hooks/useBiographySection";
 
 export const BiographySection = () => {
   const { state } = useBioSection();
+  const { isMedium } = useCustomMediaQuery();
 
   return (
-    <Stack spacing="2.77vw">
+    <Stack spacing={isMedium ? "5vw" : "2.77vw"}>
       <BioArticle props={state.biography} />
       <ProfileLinkArticle props={state.link} />
       <SocialMediaLinkArticle props={state.hyperlink} />

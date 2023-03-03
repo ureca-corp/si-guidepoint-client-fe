@@ -7,7 +7,18 @@ export interface TextProps {
 }
 export interface TextInputProps extends TextProps {
   label: string;
+  onTextChange?: (id: number, newTxt: string) => void;
   isVertical?: boolean;
+  isNecessary?: boolean;
+}
+
+export interface EmploymentTextInputProps {
+  id: number;
+  label: string;
+  value: string;
+  onTextChange: (id: number, newTxt: string) => void;
+  isVertical?: boolean;
+  isNecessary?: boolean;
 }
 
 export type CheckboxProps = {
@@ -19,6 +30,7 @@ export type CheckboxProps = {
 export type SelectProps = {
   value: string;
   onChange: (v: string) => void;
+  options: string[];
 };
 
 export type ButtonProps = {
@@ -28,5 +40,12 @@ export type ButtonProps = {
 export interface TextareaProps extends TextProps {
   label: string;
   row?: number;
+  isVertical?: boolean;
+}
+
+export interface BasicCheckboxProps {
+  checkLabel: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
   isVertical?: boolean;
 }

@@ -12,6 +12,7 @@ export const PersonalArticle = () => {
         label={"prefix"}
         value={state.prefix.value}
         onChange={state.prefix.onChange}
+        options={state.prefix.options}
       />
       <TextInput
         label={"First Name"}

@@ -18,6 +18,7 @@ export const ContactArticle = () => {
         selectProps={{
           value: state.phone.option,
           onChange: state.phone.onOptionChange,
+          options: state.phone.options,
         }}
       />
       <TextInputWithOption
@@ -29,6 +30,7 @@ export const ContactArticle = () => {
         selectProps={{
           value: state.alterPhone.option,
           onChange: state.alterPhone.onOptionChange,
+          options: state.alterPhone.options,
         }}
       />
       <TextInput
@@ -55,6 +57,8 @@ export const ContactArticle = () => {
         label="IM Type"
         value={state.imType.value}
         onChange={state.imType.onChange}
+        options={state.imType.options}
+        isNecessary
       />
     </ArticleTemplate>
   );

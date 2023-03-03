@@ -1,49 +1,95 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
 import { Stack } from "@mui/material";
 import { css } from "@emotion/react";
 import { LightColor } from "@/common/theme/colors";
-import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
+import { useCustomMediaQuery } from "@/common/theme/screen";
+import {
+  DeleteButtonType,
+  EmploymentItemProps,
+  EmploymentItemType,
+} from "../../types/item.type";
+import { EmploymentTextInput } from "./EmploymentTextInput";
+import { EmploymentCheckbox } from "./EmploymentCheckbox";
 
-export const EmploymentItem = () => {
+interface Props {
+  itemState: EmploymentItemType;
+  onItemChange: EmploymentItemProps;
+  deleteButtonState: DeleteButtonType;
+}
+
+export const EmploymentItem = ({
+  itemState,
+  onItemChange,
+  deleteButtonState,
+}: Props) => {
+  const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack css={sx.item}>
-      <BasicCheckbox
-        isVertical
-        checkLabel={"Currently\nEmployed"}
-        checked={true}
-        onChange={() => null}
+    <Stack css={sx.item(isMedium)}>
+      <EmploymentCheckbox
+        id={itemState.id}
+        isVertical={!isMedium}
+        checkLabel={isMedium ? "Currently Employed" : "Currently\nEmployed"}
+        checked={itemState.isCurrEmployed}
+        onChange={onItemChange.isCurrEmployed}
       />
-      <TextInput
+      <EmploymentTextInput
         isVertical
-        label="Employer"
-        value="sdf"
-        onChange={() => null}
+        label={"Employer"}
+        id={itemState.id}
+        value={itemState.employer}
+        onTextChange={onItemChange.employer}
+      />
+      <EmploymentTextInput
+        isVertical
+        label="Job Title"
+        id={itemState.id}
+        value={itemState.job}
+        onTextChange={onItemChange.job}
+      />
+      <StartEndDateSelection
+        id={itemState.id}
+        startDateState={{
+          month: {
+            value: itemState.startDate.month,
+            onChange: onItemChange.startDate.month,
+          },
+          year: {
+            value: itemState.startDate.year,
+            onChange: onItemChange.startDate.year,
+          },
+        }}
+        endDateState={{
+          month: {
+            value: itemState.endDate.month,
+            onChange: onItemChange.endDate.month,
+          },
+          year: {
+            value: itemState.endDate.year,
+            onChange: onItemChange.endDate.year,
+          },
+        }}
+        isVertical={isMedium}
       />
 
-      <TextInput
-        isVertical
-        label="Employer"
-        value="sdf"
-        onChange={() => null}
-      />
-      <StartEndDateSelection />
-      <DeleteButton onClick={() => null} />
+      {deleteButtonState.isVisible && (
+        <DeleteButton onClick={() => deleteButtonState.onClick(itemState.id)} />
+      )}
     </Stack>
   );
 };
 
 const sx = {
-  item: css`
+  item: (isMedium: boolean) => css`
     position: relative;
     width: 100%;
-    height: 160px;
+    height: ${isMedium ? "unset" : "160px"};
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: ${isMedium ? "column" : "row"};
+    align-items: ${isMedium ? "unset" : "flex-start"};
     justify-content: space-between;
-    padding: 1.11vw;
+    gap: ${isMedium ? "20px" : "unset"};
+    padding: ${isMedium ? "20px" : "1.11vw"};
     border: 1px solid ${LightColor.BorderColor1};
     border-radius: 12px;
   `,

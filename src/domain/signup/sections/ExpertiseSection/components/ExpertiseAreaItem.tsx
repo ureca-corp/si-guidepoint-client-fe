@@ -1,60 +1,64 @@
 import { LightColor } from "@/common/theme/colors";
-import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
-import { SelectProps } from "@/domain/signup/common/types/input.type";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { css } from "@emotion/react";
 import { Stack } from "@mui/material";
+import { EmploymentTextInput } from "../../EmploymentSection/components/EmploymentItem/EmploymentTextInput";
+import { ExpertiseItemProps, ExpertiseItemType } from "../types/item.type";
 
-type ExpertiseAreaItemProps = {
-  sectorProps: SelectProps;
-  industryProps: SelectProps;
-  businessProps: SelectProps;
-  departmentProps: SelectProps;
-  roleProps: SelectProps;
-};
+interface Props {
+  itemState: ExpertiseItemType;
+  onItemChange: ExpertiseItemProps;
+}
 
-export const ExpertiseAreaItem = (p: ExpertiseAreaItemProps) => {
+export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
+  const { isMedium } = useCustomMediaQuery();
   return (
-    <Stack css={sx.item}>
-      <FullSelection
+    <Stack css={sx.item(isMedium)}>
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Sector"}
-        value={p.sectorProps.value}
-        onChange={p.sectorProps.onChange}
+        value={itemState.sector}
+        onTextChange={onItemChange.sector}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Industry"}
-        value={p.industryProps.value}
-        onChange={p.industryProps.onChange}
+        value={itemState.industry}
+        onTextChange={onItemChange.industry}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Business Type"}
-        value={p.businessProps.value}
-        onChange={p.businessProps.onChange}
+        value={itemState.businessType}
+        onTextChange={onItemChange.businessType}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Department"}
-        value={p.departmentProps.value}
-        onChange={p.departmentProps.onChange}
+        value={itemState.department}
+        onTextChange={onItemChange.department}
         isVertical
-      ></FullSelection>
-      <FullSelection
+      />
+      <EmploymentTextInput
+        id={itemState.id}
         label={"Role"}
-        value={p.roleProps.value}
-        onChange={p.roleProps.onChange}
+        value={itemState.role}
+        onTextChange={onItemChange.role}
         isVertical
-      ></FullSelection>
+      />
     </Stack>
   );
 };
 
 const sx = {
-  item: css`
+  item: (isMedium: boolean) => css`
     width: 100%;
-    gap: 1.11vw;
+    gap: ${isMedium ? "20px" : "1.11vw"};
     border: 1px solid ${LightColor.BorderColor1};
-    padding: 1.11vw;
+    padding: ${isMedium ? "20px" : "1.11vw"};
     border-radius: 12px;
   `,
 };
