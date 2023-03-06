@@ -1,5 +1,5 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { Button, TextField, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { TextProps } from "@/domain/signup/common/types/input.type";
 
 type ArticleProps = {
@@ -9,12 +9,12 @@ type ArticleProps = {
 export const ConflictArticle = ({ props }: ArticleProps) => {
   return (
     <ArticleTemplate title="Compliance Conflicts">
-      <Typography>
+      <Typography variant="subtitle2">
         {
           "Out records indicate that you have listed the folling restrictions or conflicts of interest in respect of your consulting. This information must be up to date before you may participate in any consultation"
         }
       </Typography>
-      <Typography>
+      <Typography variant="subtitle2">
         {
           "Please provide keywords across the provided categories below to help us match yoru profile to our client research projects (Please use commas to separate items)."
         }

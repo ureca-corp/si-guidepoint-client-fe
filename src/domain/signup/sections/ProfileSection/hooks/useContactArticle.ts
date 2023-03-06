@@ -1,3 +1,4 @@
+import { IM_TYPE, PHONE_TYPE } from "@/common/models/enum/form.enum";
 import { useState } from "react";
 
 export const useContactArticle = () => {
@@ -9,8 +10,12 @@ export const useContactArticle = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [im, setIm] = useState("");
   const [imType, setImType] = useState("");
-  const [phoneOption, setPhoneOption] = useState("Mr");
-  const [alterPhoneOption, setAlterPhoneOption] = useState("Mr");
+  const [phoneOption, setPhoneOption] = useState("");
+  const [alterPhoneOption, setAlterPhoneOption] = useState("");
+
+  //  select options
+  const imOptions = Object.values(IM_TYPE);
+  const phoneOptions = Object.values(PHONE_TYPE);
 
   // functions
   const handlePhoneChange = (v: string) => {
@@ -49,12 +54,14 @@ export const useContactArticle = () => {
         onChange: handlePhoneChange,
         option: phoneOption,
         onOptionChange: handlePhoneOptionChange,
+        options: phoneOptions,
       },
       alterPhone: {
         value: alterPhone,
         onChange: handleAlterPhoneChange,
         option: alterPhoneOption,
         onOptionChange: handleAlterPhoneOptionChange,
+        options: phoneOptions,
       },
       fax: {
         value: fax,
@@ -75,6 +82,7 @@ export const useContactArticle = () => {
       imType: {
         value: imType,
         onChange: handleImTypeChange,
+        options: imOptions,
       },
     },
   };

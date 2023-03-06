@@ -1,3 +1,5 @@
+import { PREFIX_TYPE } from "@/common/models/enum/form.enum";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import {
   FormControl,
   FormHelperText,
@@ -11,7 +13,9 @@ type FullSelectionType = {
   label: string;
   value: string;
   onChange: (v: string) => void;
-  captionEnabled?: boolean;
+  options: string[];
+
+  isNecessary?: boolean;
   isVertical?: boolean;
 };
 
@@ -19,30 +23,36 @@ export const FullSelection = ({
   label,
   value,
   onChange,
-  captionEnabled = false,
+  options,
+  isNecessary = false,
   isVertical = false,
 }: FullSelectionType) => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
     <Stack
-      direction={isVertical ? "column" : "row"}
+      direction={isMedium || isVertical ? "column" : "row"}
       spacing={isVertical ? "0.55vw" : "1.11vw"}
       alignItems={isVertical ? "flex-start" : "center"}
     >
-      <BasicLabel sx={{ textAlign: isVertical ? "left" : "right" }}>
-        {captionEnabled && `*`}
-        {label}
-      </BasicLabel>
+      <BasicLabel
+        isVertical={isVertical}
+        label={label}
+        isNecessary={isNecessary}
+      />
       <FormControl fullWidth>
         <Select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="Mr">Mr</MenuItem>
-          <MenuItem value="Ms">Ms</MenuItem>
-          <MenuItem value="Mrs">Mrs</MenuItem>
+          {options.map((it, index) => (
+            <MenuItem key={index} value={it}>
+              {it}
+            </MenuItem>
+          ))}
         </Select>
-        {captionEnabled && <TimezoneHelperText />}
+        {isNecessary && <TimezoneHelperText />}
       </FormControl>
     </Stack>
   );

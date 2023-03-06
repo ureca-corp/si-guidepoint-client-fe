@@ -1,7 +1,7 @@
 import { Stack } from "@mui/system";
+import { useCustomMediaQuery } from "@/common/theme/screen";
 import { ArticlesWrapper } from "../../common/components/template";
 import {
-  AddressArticle,
   AssistanceArticle,
   ContactArticle,
   EmptyArticle,
@@ -9,10 +9,13 @@ import {
   PersonalArticle,
   PhysicalArticle,
 } from "./articles";
+import { useFetchTerms } from "@/infra/terms/hooks/useFetchTerms";
 
 export const ProfileSection = () => {
+  const { isMedium } = useCustomMediaQuery();
+
   return (
-    <Stack width="100%" spacing="2.77vw">
+    <Stack width="100%" spacing={isMedium ? "40px" : "2.77vw"}>
       <ArticlesWrapper>
         <PersonalArticle />
         <AssistanceArticle />
@@ -23,7 +26,7 @@ export const ProfileSection = () => {
       </ArticlesWrapper>
       <ArticlesWrapper>
         <PhysicalArticle />
-        <EmptyArticle />
+        {isMedium || <EmptyArticle />}
       </ArticlesWrapper>
     </Stack>
   );
