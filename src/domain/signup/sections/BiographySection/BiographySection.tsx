@@ -18,7 +18,7 @@ export const BiographySection = () => {
     <Stack spacing={isMedium ? "5vw" : "2.77vw"}>
       <BioArticle props={state.biography} />
       <ProfileLinkArticle props={state.link} />
-      <SocialMediaLinkArticle props={state.hyperlink} />
+      <SocialMediaLinkArticle props={state.mediaItemState} />
       <ResumeArticle />
       <ConflictArticle props={state.compliance} />
       <SubmitButton onClick={state.submit.onSubmit} />

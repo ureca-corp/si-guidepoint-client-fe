@@ -1,8 +1,19 @@
 import { useCallback, useState } from "react";
+import { MediaItem } from "../types/item.type";
 export const useBioSection = () => {
   const [biography, setBiography] = useState("");
   const [link, setLink] = useState("");
   const [compliance, setCompliance] = useState("");
+
+  // state
+  const [itemCount, setItemCount] = useState(1);
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>([
+    {
+      id: 0,
+      sns: "",
+      address: "",
+    },
+  ]);
 
   const handleBiographyChange = (v: string) => {
     setBiography(v);
@@ -30,6 +41,44 @@ export const useBioSection = () => {
     console.log("click");
   };
 
+  // 1, sns
+  const handleSnsChange = (id: number, v: string) => {
+    const findIndex = mediaItems.findIndex((item) => item.id === id);
+    const copiedItems = [...mediaItems];
+
+    copiedItems[findIndex].sns = v;
+    setMediaItems(copiedItems);
+  };
+
+  // 2. address
+  const handleAddressChange = (id: number, v: string) => {
+    const findIndex = mediaItems.findIndex((item) => item.id === id);
+    const copiedItems = [...mediaItems];
+
+    copiedItems[findIndex].address = v;
+    setMediaItems(copiedItems);
+  };
+
+  // button functions
+  const onAddItem = useCallback(() => {
+    setItemCount(itemCount + 1);
+    setMediaItems((old) => [
+      ...old,
+      {
+        id: itemCount,
+        sns: "",
+        address: "",
+      },
+    ]);
+  }, [itemCount]);
+
+  const onDeleteItem = (itemId: number) => {
+    const remainItemList = mediaItems.filter((it) => it.id !== itemId);
+    setMediaItems(remainItemList);
+  };
+
+  const isButtonVisible = mediaItems.length <= 4;
+
   return {
     state: {
       biography: {
@@ -45,8 +94,19 @@ export const useBioSection = () => {
         value: compliance,
         onChange: handleComplianceChange,
       },
-      hyperlink: {
-        onUploadClick: onHyperlinkUpload,
+      mediaItemState: {
+        list: mediaItems,
+        onChange: {
+          sns: handleSnsChange,
+          address: handleAddressChange,
+        },
+        addButton: {
+          isVisible: isButtonVisible,
+          onClick: onAddItem,
+        },
+        deleteButton: {
+          onClick: onDeleteItem,
+        },
       },
       resume: {
         onUploadClick: onResumeUpload,

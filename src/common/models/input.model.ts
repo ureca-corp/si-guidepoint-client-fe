@@ -14,3 +14,12 @@ export const MonthModels = [
 ];
 
 export const ExperienceYearModels = ["1-5", "6-10", "11-15", "16+"];
+
+export const SnsModels = [
+  "Facebook",
+  "LinkedIn",
+  "Twitter",
+  "Instagram",
+  "Youtube",
+  "Other",
+];
