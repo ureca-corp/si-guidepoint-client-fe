@@ -45,14 +45,9 @@ export const SocialMediaLinkItem = ({
         value={itemState.address}
         onChange={(e) => onChangeState.address(itemState.id, e.target.value)}
       />
-      <Stack direction={"row"}>
-        <IconButton onClick={() => onDelete(itemState.id)}>
-          <DisabledByDefaultRoundedIcon color="error" />
-        </IconButton>
-        <IconButton>
-          <CheckBoxRoundedIcon color="success" />
-        </IconButton>
-      </Stack>
+      <IconButton onClick={() => onDelete(itemState.id)}>
+        <DisabledByDefaultRoundedIcon color="error" />
+      </IconButton>
     </Stack>
   );
 };
