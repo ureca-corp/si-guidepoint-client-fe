@@ -1,9 +1,13 @@
+import { MediaItem } from "@/common/types/item.type";
+import { ResidenceInfoAtom } from "@/recoil/Profile/residence.atom";
 import { useCallback, useState } from "react";
-import { MediaItem } from "../types/item.type";
+import { useRecoilValue } from "recoil";
 export const useBioSection = () => {
   const [biography, setBiography] = useState("");
   const [link, setLink] = useState("");
   const [compliance, setCompliance] = useState("");
+
+  const data = useRecoilValue(ResidenceInfoAtom);
 
   // state
   const [itemCount, setItemCount] = useState(1);
@@ -38,7 +42,7 @@ export const useBioSection = () => {
   };
 
   const onSubmit = () => {
-    console.log("click");
+    console.log(data);
   };
 
   // 1, sns

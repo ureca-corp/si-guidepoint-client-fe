@@ -1,5 +1,5 @@
+import { ExpertiseItemType } from "@/common/types/item.type";
 import { useCallback, useState } from "react";
-import { ExpertiseItemType } from "../types/item.type";
 
 export const useAddExpertiseArticle = () => {
   // state

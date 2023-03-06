@@ -7,8 +7,8 @@ import {
   TextField,
 } from "@mui/material";
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
-import { MediaItem } from "../../types/item.type";
 import { SnsModels } from "@/common/models/input.model";
+import { MediaItem } from "@/common/types/item.type";
 
 interface Props {
   itemState: MediaItem;

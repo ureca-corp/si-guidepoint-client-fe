@@ -1,7 +1,7 @@
+import { MediaItem } from "@/common/types/item.type";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { AddItemButton } from "../../EmploymentSection/components";
 import { SocialMediaLinkItem } from "../components/SocialMediaLinkItem";
-import { MediaItem } from "../types/item.type";
 
 interface ArticleProps {
   props: {

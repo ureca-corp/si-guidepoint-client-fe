@@ -1,9 +1,10 @@
 import { LightColor } from "@/common/theme/colors";
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ExpertiseItemType } from "@/common/types/item.type";
 import { css } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { EmploymentTextInput } from "../../EmploymentSection/components/EmploymentItem/EmploymentTextInput";
-import { ExpertiseItemProps, ExpertiseItemType } from "../types/item.type";
+import { ExpertiseItemProps } from "../types/item.type";
 
 interface Props {
   itemState: ExpertiseItemType;
