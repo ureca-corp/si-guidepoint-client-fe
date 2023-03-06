@@ -4,16 +4,13 @@ import { LightColor } from "@/common/theme/colors";
 import { StartEndDateSelection } from "./StartEndDateSelection";
 import { DeleteButton } from "@/domain/signup/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import {
-  DeleteButtonType,
-  EmploymentItemProps,
-  EmploymentItemType,
-} from "../../types/item.type";
+import { DeleteButtonType, EmploymentItemProps } from "../../types/item.type";
 import { EmploymentTextInput } from "./EmploymentTextInput";
 import { EmploymentCheckbox } from "./EmploymentCheckbox";
+import { EmploymentHistoryItemInput } from "@/recoil/Profile/employment.atom";
 
 interface Props {
-  itemState: EmploymentItemType;
+  itemState: EmploymentHistoryItemInput;
   onItemChange: EmploymentItemProps;
   deleteButtonState: DeleteButtonType;
 }
@@ -30,42 +27,42 @@ export const EmploymentItem = ({
         id={itemState.id}
         isVertical={!isMedium}
         checkLabel={isMedium ? "Currently Employed" : "Currently\nEmployed"}
-        checked={itemState.isCurrEmployed}
+        checked={itemState.isCurrentlyEmployed}
         onChange={onItemChange.isCurrEmployed}
       />
       <EmploymentTextInput
         isVertical
         label={"Employer"}
         id={itemState.id}
-        value={itemState.employer}
+        value={itemState.employerName}
         onTextChange={onItemChange.employer}
       />
       <EmploymentTextInput
         isVertical
         label="Job Title"
         id={itemState.id}
-        value={itemState.job}
+        value={itemState.jobTitle}
         onTextChange={onItemChange.job}
       />
       <StartEndDateSelection
         id={itemState.id}
         startDateState={{
           month: {
-            value: itemState.startDate.month,
+            value: itemState.startedAt,
             onChange: onItemChange.startDate.month,
           },
           year: {
-            value: itemState.startDate.year,
+            value: itemState.startedAt,
             onChange: onItemChange.startDate.year,
           },
         }}
         endDateState={{
           month: {
-            value: itemState.endDate.month,
+            value: itemState.endedAt,
             onChange: onItemChange.endDate.month,
           },
           year: {
-            value: itemState.endDate.year,
+            value: itemState.endedAt,
             onChange: onItemChange.endDate.year,
           },
         }}

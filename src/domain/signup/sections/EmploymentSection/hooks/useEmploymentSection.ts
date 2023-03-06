@@ -1,115 +1,97 @@
-import { useCallback, useState } from "react";
-import { EmploymentItemType } from "../types/item.type";
+import { EmploymentInfoAtom } from "@/recoil/Profile/employment.atom";
+import { useCallback, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export const useEmploymentSection = () => {
   // state
   const [itemCount, setItemCount] = useState(1);
+  const [employmentInfos, setEmploymentInfos] =
+    useRecoilState(EmploymentInfoAtom);
+  const temp = [...employmentInfos];
 
   const [sectorExperience, setSectorExperience] = useState("");
-
   const handleSectorExperienceChange = (v: string) => {
     setSectorExperience(v);
   };
 
-  const [employmentItems, setEmploymentItems] = useState<EmploymentItemType[]>([
-    {
-      id: 0,
-      isCurrEmployed: false,
-      employer: "",
-      job: "",
-      startDate: { month: "", year: "" },
-      endDate: { month: "", year: "" },
-    },
-  ]);
-
-  // item functions
   // 0. curr employed 수정
   const handleCurrEmployedChange = (id: number, v: boolean) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].isCurrEmployed = v;
-    setEmploymentItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], isCurrentlyEmployed: v };
+    setEmploymentInfos(temp);
   };
 
   // 1. employer 수정
   const handleEmployerChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].employer = v;
-    setEmploymentItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], employerName: v };
+    setEmploymentInfos(temp);
   };
 
   // 2. employer 수정
   const handleJobChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
-
-    copiedItems[findIndex].job = v;
-    setEmploymentItems(copiedItems);
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
+    temp[findIndex] = { ...temp[findIndex], jobTitle: v };
+    setEmploymentInfos(temp);
   };
 
   // 3. start month 수정
   const handleStartMonthChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].startDate.month = v;
-    setEmploymentItems(copiedItems);
-    console.log("handleStartMonthChange");
+    temp[findIndex] = { ...temp[findIndex], startedAt: v };
+    setEmploymentInfos(temp);
   };
 
   // 4. start year 수정
   const handleStartYearChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].startDate.year = v;
-    setEmploymentItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], startedAt: v };
+    setEmploymentInfos(temp);
   };
 
   // 5. end month 수정
   const handleEndMonthChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].endDate.month = v;
-    setEmploymentItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], endedAt: v };
+    setEmploymentInfos(temp);
   };
 
   // 6. end year 수정
   const handleEndYearChange = (id: number, v: string) => {
-    const findIndex = employmentItems.findIndex((item) => item.id === id);
-    const copiedItems = [...employmentItems];
+    const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].endDate.year = v;
-    setEmploymentItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], endedAt: v };
+    setEmploymentInfos(temp);
   };
 
   // button functions
   const onAddItem = useCallback(() => {
     setItemCount(itemCount + 1);
-    setEmploymentItems((old) => [
+    setEmploymentInfos((old) => [
       ...old,
       {
         id: itemCount,
-        isCurrEmployed: false,
-        employer: "",
-        job: "",
-        startDate: { month: "", year: "" },
-        endDate: { month: "", year: "" },
+        isCurrentlyEmployed: false,
+        employerName: "",
+        endedAt: "",
+        jobTitle: "",
+        startedAt: "",
       },
     ]);
-  }, [itemCount]);
+  }, [itemCount, setEmploymentInfos]);
 
   const onDeleteItem = (itemId: number) => {
-    const remainItemList = employmentItems.filter((it) => it.id !== itemId);
-    setEmploymentItems(remainItemList);
+    const remainItemList = employmentInfos.filter((it) => it.id !== itemId);
+    setEmploymentInfos((old) => ({ ...old, items: remainItemList }));
   };
 
-  const isButtonVisible = employmentItems.length <= 4;
-  const isDeleteButtonVisible = employmentItems.length > 1;
+  const isButtonVisible = employmentInfos.length <= 4;
+  const isDeleteButtonVisible = employmentInfos.length > 1;
 
   return {
     sectorExperienceState: {
@@ -117,7 +99,7 @@ export const useEmploymentSection = () => {
       onChange: handleSectorExperienceChange,
     },
     employmentItemState: {
-      list: employmentItems,
+      list: employmentInfos,
       onChange: {
         isCurrEmployed: handleCurrEmployedChange,
         employer: handleEmployerChange,
