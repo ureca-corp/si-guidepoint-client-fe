@@ -1,8 +1,8 @@
 import { PasswordRequestView } from "@/domain/password-request";
 import type { NextPage } from "next";
 
-const PasswordRequestPage: NextPage = () => {
+const PasswordResetPage: NextPage = () => {
   return <PasswordRequestView />;
 };
 
-export default PasswordRequestPage;
+export default PasswordResetPage;
