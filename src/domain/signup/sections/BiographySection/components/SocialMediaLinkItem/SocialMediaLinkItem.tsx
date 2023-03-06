@@ -7,7 +7,6 @@ import {
   TextField,
 } from "@mui/material";
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
-import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
 import { MediaItem } from "../../types/item.type";
 import { SnsModels } from "@/common/models/input.model";
 
