@@ -1,58 +1,57 @@
-import { useState } from "react";
+import { AssistantInfoAtom } from "@/recoil/Profile/assistant.atom";
+import { useRecoilState } from "recoil";
 
 export const useAssistantArticle = () => {
   // state
-  const [assist1Name, setAssist1Name] = useState("");
-  const [assist1Email, setAssist1Email] = useState("");
-
-  const [assist2Name, setAssist2Name] = useState("");
-  const [assist2Email, setAssist2Email] = useState("");
-
-  const [assist1Checked, setAssist1Checked] = useState(false);
-  const [assist2Checked, setAssist2Checked] = useState(false);
+  const [assistantInfo, setAssistantInfo] = useRecoilState(AssistantInfoAtom);
+  const temp = [...assistantInfo];
 
   // functions
   const handleAsssist1NameChange = (v: string) => {
-    setAssist1Name(v);
+    temp[0] = { ...temp[0], name: v };
+    setAssistantInfo(temp);
   };
 
+  const handleAsssist1PhoneChange = (v: string) => {
+    temp[0] = { ...temp[0], phone: v };
+    setAssistantInfo(temp);
+  };
   const handleAsssist1EmailChange = (v: string) => {
-    setAssist1Email(v);
+    temp[0] = { ...temp[0], email: v };
+    setAssistantInfo(temp);
   };
 
   const handleAsssist2NameChange = (v: string) => {
-    setAssist2Name(v);
+    temp[1] = { ...temp[1], name: v };
+    setAssistantInfo(temp);
   };
 
+  const handleAsssist2PhoneChange = (v: string) => {
+    temp[1] = { ...temp[1], phone: v };
+    setAssistantInfo(temp);
+  };
   const handleAsssist2EmailChange = (v: string) => {
-    setAssist2Email(v);
-  };
-
-  const handleAssist1Change = (v: boolean) => {
-    setAssist1Checked(v);
-  };
-
-  const handleAssist2Change = (v: boolean) => {
-    setAssist2Checked(v);
+    temp[1] = { ...temp[1], email: v };
+    setAssistantInfo(temp);
   };
 
   return {
     state: {
       assist1: {
-        name: assist1Name,
+        name: assistantInfo[0].name,
         onNameChange: handleAsssist1NameChange,
-        email: assist1Email,
+        phone: assistantInfo[0].phone,
+        onPhoneChange: handleAsssist1PhoneChange,
+        email: assistantInfo[0].email,
         onEmailChange: handleAsssist1EmailChange,
-        checked: assist1Checked,
-        onCheckChange: handleAssist1Change,
       },
       assist2: {
-        name: assist2Name,
+        name: assistantInfo[1].name,
         onNameChange: handleAsssist2NameChange,
-        email: assist2Email,
+        phone: assistantInfo[1].phone,
+        onPhoneChange: handleAsssist2PhoneChange,
+        email: assistantInfo[1].email,
         onEmailChange: handleAsssist2EmailChange,
-        checked: assist2Checked,
-        onCheckChange: handleAssist2Change,
       },
     },
   };

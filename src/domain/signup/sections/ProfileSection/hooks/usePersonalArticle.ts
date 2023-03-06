@@ -1,57 +1,54 @@
 import { PREFIX_TYPE } from "@/common/models/enum/form.enum";
-import { useState } from "react";
+import { PersonalInfoAtom } from "@/recoil/Profile/personal.atom";
+import { useRecoilState } from "recoil";
 
 export const usePersonalArticle = () => {
-  const [prefix, setPrefix] = useState("Mr.");
-  const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [suffix, setSuffix] = useState("");
+  const [personalInfo, setPersonalInfo] = useRecoilState(PersonalInfoAtom);
 
   // prefix select options
   const options = Object.values(PREFIX_TYPE);
 
   const handleFirstNameChange = (v: string) => {
-    setFirstName(v);
+    setPersonalInfo((old) => ({ ...old, firstName: v }));
   };
 
   const handleMiddleNameChange = (v: string) => {
-    setMiddleName(v);
+    setPersonalInfo((old) => ({ ...old, middleInitial: v }));
   };
 
   const handleLastNameChange = (v: string) => {
-    setLastName(v);
+    setPersonalInfo((old) => ({ ...old, lastName: v }));
   };
 
   const handleSuffixChange = (v: string) => {
-    setSuffix(v);
+    setPersonalInfo((old) => ({ ...old, suffix: v }));
   };
 
   const handlePrefixChange = (v: string) => {
-    setPrefix(v);
+    setPersonalInfo((old) => ({ ...old, prefix: v }));
   };
 
   return {
     state: {
       prefix: {
-        value: prefix,
+        value: personalInfo.prefix,
         onChange: handlePrefixChange,
         options: options,
       },
       firstName: {
-        value: firstName,
+        value: personalInfo.firstName,
         onChange: handleFirstNameChange,
       },
       middleName: {
-        value: middleName,
+        value: personalInfo.middleInitial,
         onChange: handleMiddleNameChange,
       },
       lastName: {
-        value: lastName,
+        value: personalInfo.lastName,
         onChange: handleLastNameChange,
       },
       suffix: {
-        value: suffix,
+        value: personalInfo.suffix,
         onChange: handleSuffixChange,
       },
     },
