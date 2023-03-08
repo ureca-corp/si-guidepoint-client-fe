@@ -1,6 +1,5 @@
-import { MediaItem } from "@/common/types/item.type";
+import { SocialMediaProfile } from "@/common/types/profile.type";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { SocialMediaProfile } from "@/recoil/Profile/biography.atom";
 import { AddItemButton } from "../../EmploymentSection/components";
 import { SocialMediaLinkItem } from "../components/SocialMediaLinkItem";
 

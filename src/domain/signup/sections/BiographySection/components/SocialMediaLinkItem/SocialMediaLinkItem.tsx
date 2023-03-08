@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
 import { SnsModels } from "@/common/models/input.model";
-import { SocialMediaProfile } from "@/recoil/Profile/biography.atom";
+import { SocialMediaProfile } from "@/common/types/profile.type";
 
 interface Props {
   id: number;
