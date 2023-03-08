@@ -1,22 +1,30 @@
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { Button } from "@mui/material";
-import { css } from "@emotion/react";
+import { Button, Typography } from "@mui/material";
 
-export const ResumeArticle = () => {
+interface Props {
+  props: {
+    file: any;
+    onClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  };
+}
+
+export const ResumeArticle = ({ props }: Props) => {
   return (
     <ArticleTemplate title="Resume">
       <div>
-        <Button css={sx.uploadButton} variant="contained" component="label">
+        <Button variant="contained" component="label">
           Upload File
-          <input type="file" hidden />
+          <input
+            id="resume-upload"
+            type="file"
+            onChange={(e) => props.onClick(e)}
+            hidden
+          />
         </Button>
       </div>
+      <label htmlFor="resume-upload">
+        <Typography variant="body2">{props.file}</Typography>
+      </label>
     </ArticleTemplate>
   );
-};
-
-const sx = {
-  uploadButton: css`
-    margin-top: 20px;
-  `,
 };

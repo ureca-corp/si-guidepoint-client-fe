@@ -19,7 +19,7 @@ export const BiographySection = () => {
       <BioArticle props={state.biography} />
       <ProfileLinkArticle props={state.link} />
       <SocialMediaLinkArticle props={state.mediaItemState} />
-      <ResumeArticle />
+      <ResumeArticle props={state.resume} />
       <ConflictArticle props={state.compliance} />
       <SubmitButton onClick={state.submit.onSubmit} />
     </Stack>

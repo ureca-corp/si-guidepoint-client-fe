@@ -1,108 +1,112 @@
-import { MediaItem } from "@/common/types/item.type";
-import { ResidenceInfoAtom } from "@/recoil/Profile/residence.atom";
-import { useCallback, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useFetchFileUrl } from "@/infra/profile/hooks/useFetchFileUrl";
+import {
+  BiographyInfoAtom,
+  MediaAtom,
+  ResumeFile,
+  ResumeFilenameWithTimestamp,
+} from "@/recoil/Profile/biography.atom";
+import { useCallback } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 export const useBioSection = () => {
-  const [biography, setBiography] = useState("");
-  const [link, setLink] = useState("");
-  const [compliance, setCompliance] = useState("");
-
-  const data = useRecoilValue(ResidenceInfoAtom);
-
   // state
-  const [itemCount, setItemCount] = useState(1);
-  const [mediaItems, setMediaItems] = useState<MediaItem[]>([
-    {
-      id: 0,
-      sns: "",
-      address: "",
-    },
-  ]);
+  const [biographyInfos, setBiographyInfos] = useRecoilState(BiographyInfoAtom);
+
+  const [resumeFile, setResumetFile] = useRecoilState(ResumeFile);
+  const filename = useRecoilValue(ResumeFilenameWithTimestamp);
+
+  const [medias, setMedias] = useRecoilState(MediaAtom);
+  const mediaTemp = [...medias];
+
+  // file upload function
+  const { requeryFileUrl, data } = useFetchFileUrl();
 
   const handleBiographyChange = (v: string) => {
-    setBiography(v);
+    setBiographyInfos((old) => ({ ...old, biography: v }));
   };
-
   const handleLinkChange = (v: string) => {
-    setLink(v);
+    setBiographyInfos((old) => ({ ...old, linkedInProfileLink: v }));
   };
   const handleComplianceChange = (v: string) => {
-    setCompliance(v);
+    setBiographyInfos((old) => ({ ...old, complianceConflicts: v }));
   };
 
   const remainedTextCount = useCallback(() => {
-    return 2000 - biography.length;
-  }, [biography]);
+    return 2000 - biographyInfos.biography.length;
+  }, [biographyInfos.biography]);
 
-  const onResumeUpload = () => {
-    console.log("click");
+  // file upload
+  const resumeUploadHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+      }
+    };
+
+    if (!e.target.files) {
+      return;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    setResumetFile(e.target.files[0]);
+    requeryFileUrl({ variables: { filename } });
+
+    e.target.value = "";
   };
-  const onHyperlinkUpload = () => {
-    console.log("click");
+
+  // 1, type
+  const handleTypeChange = (id: number, v: string) => {
+    mediaTemp[id] = { ...mediaTemp[id], type: v };
+    setMedias(mediaTemp);
   };
 
-  const onSubmit = () => {
-    console.log(data);
-  };
-
-  // 1, sns
-  const handleSnsChange = (id: number, v: string) => {
-    const findIndex = mediaItems.findIndex((item) => item.id === id);
-    const copiedItems = [...mediaItems];
-
-    copiedItems[findIndex].sns = v;
-    setMediaItems(copiedItems);
-  };
-
-  // 2. address
+  // 2. link (address)
   const handleAddressChange = (id: number, v: string) => {
-    const findIndex = mediaItems.findIndex((item) => item.id === id);
-    const copiedItems = [...mediaItems];
-
-    copiedItems[findIndex].address = v;
-    setMediaItems(copiedItems);
+    mediaTemp[id] = { ...mediaTemp[id], link: v };
+    setMedias(mediaTemp);
   };
 
   // button functions
   const onAddItem = useCallback(() => {
-    setItemCount(itemCount + 1);
-    setMediaItems((old) => [
+    setMedias((old) => [
       ...old,
       {
-        id: itemCount,
-        sns: "",
-        address: "",
+        type: "",
+        link: "",
       },
     ]);
-  }, [itemCount]);
+  }, [setMedias]);
 
-  const onDeleteItem = (itemId: number) => {
-    const remainItemList = mediaItems.filter((it) => it.id !== itemId);
-    setMediaItems(remainItemList);
+  const onDeleteItem = (id: number) => {
+    const temp = [...medias];
+    temp.splice(id, 1);
+
+    setMedias(temp);
   };
-
-  const isButtonVisible = mediaItems.length <= 4;
+  const isButtonVisible = medias.length <= 4;
+  const onSubmit = () => {};
 
   return {
     state: {
       biography: {
-        value: biography,
+        value: biographyInfos.biography,
         onChange: handleBiographyChange,
         remainedTextCount: remainedTextCount,
       },
       link: {
-        value: link,
+        value: biographyInfos.linkedInProfileLink,
         onChange: handleLinkChange,
       },
       compliance: {
-        value: compliance,
+        value: biographyInfos.complianceConflicts,
         onChange: handleComplianceChange,
       },
       mediaItemState: {
-        list: mediaItems,
+        list: medias,
         onChange: {
-          sns: handleSnsChange,
-          address: handleAddressChange,
+          type: handleTypeChange,
+          link: handleAddressChange,
         },
         addButton: {
           isVisible: isButtonVisible,
@@ -113,7 +117,8 @@ export const useBioSection = () => {
         },
       },
       resume: {
-        onUploadClick: onResumeUpload,
+        file: resumeFile?.name ?? "",
+        onClick: resumeUploadHandler,
       },
       submit: { onSubmit: onSubmit },
     },
