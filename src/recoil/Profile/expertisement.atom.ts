@@ -1,6 +1,6 @@
 import {
   AreaOfExpertiseInput,
-  ExpertiseHistoryInput,
+  CustomKeywordsOfExpertiseInput,
   KeywordsOfExpertiseInput,
 } from "@/common/types/profile.type";
 import { atom, selector } from "recoil";
@@ -18,20 +18,6 @@ export const temp = selector({
   },
 });
 
-export const ExpertisementInfoAtom = atom<ExpertiseHistoryInput>({
-  key: "expertisementInfoState",
-  default: {
-    areaList: [],
-    keywords: {
-      boardCertifications: [],
-      companyExperience: [],
-      drugsAndTechnology: [],
-      productExperience: [],
-      researchInterests: [],
-    },
-  },
-});
-
 export const AreaOfExpertiseAtom = atom<AreaOfExpertiseInput[]>({
   key: "areaOfExpertiseState",
   default: [
@@ -44,13 +30,43 @@ export const AreaOfExpertiseAtom = atom<AreaOfExpertiseInput[]>({
   ],
 });
 
-export const KeywordExpertisementAtom = atom<KeywordsOfExpertiseInput>({
+export const CustomKeywordExpertisementAtom =
+  atom<CustomKeywordsOfExpertiseInput>({
+    key: "customKeywordExpertisementState",
+    default: {
+      boardCertifications: "",
+      companyExperience: "",
+      drugsAndTechnology: "",
+      productExperience: "",
+      researchInterests: "",
+    },
+  });
+
+export const KeywordExpertisementAtom = selector({
   key: "keywordExpertisementState",
-  default: {
-    boardCertifications: [],
-    companyExperience: [],
-    drugsAndTechnology: [],
-    productExperience: [],
-    researchInterests: [],
+  get: ({ get }) => {
+    const keywordExpertisementData = get(CustomKeywordExpertisementAtom);
+
+    const handleSplitData = (data: string) => {
+      return data.split(",");
+    };
+
+    return {
+      boardCertifications: handleSplitData(
+        keywordExpertisementData.boardCertifications
+      ),
+      companyExperience: handleSplitData(
+        keywordExpertisementData.companyExperience
+      ),
+      drugsAndTechnology: handleSplitData(
+        keywordExpertisementData.drugsAndTechnology
+      ),
+      productExperience: handleSplitData(
+        keywordExpertisementData.productExperience
+      ),
+      researchInterests: handleSplitData(
+        keywordExpertisementData.researchInterests
+      ),
+    };
   },
 });

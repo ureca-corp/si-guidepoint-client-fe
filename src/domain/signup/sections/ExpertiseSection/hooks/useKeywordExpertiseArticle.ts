@@ -1,46 +1,41 @@
-import { KeywordExpertisementAtom } from "@/recoil/Profile/expertisement.atom";
+import { CustomKeywordExpertisementAtom } from "@/recoil/Profile/expertisement.atom";
 import { useRecoilState } from "recoil";
 
 export const useKeywordExpertiseArticle = () => {
   // state
   const [keywordExpertisements, setKeywordExpertisements] = useRecoilState(
-    KeywordExpertisementAtom
+    CustomKeywordExpertisementAtom
   );
 
   //functions
   const handleDrugsChange = (v: string) => {
-    const keyowrds = v.split(",");
     setKeywordExpertisements((old) => ({
       ...old,
-      drugsAndTechnology: keyowrds,
+      drugsAndTechnology: v,
     }));
   };
   const handleResearchChange = (v: string) => {
-    const keyowrds = v.split(",");
     setKeywordExpertisements((old) => ({
       ...old,
-      researchInterests: keyowrds,
+      researchInterests: v,
     }));
   };
   const handleCertificationsChange = (v: string) => {
-    const keyowrds = v.split(",");
     setKeywordExpertisements((old) => ({
       ...old,
-      boardCertifications: keyowrds,
+      boardCertifications: v,
     }));
   };
   const handleCompanyChange = (v: string) => {
-    const keyowrds = v.split(",");
     setKeywordExpertisements((old) => ({
       ...old,
-      companyExperience: keyowrds,
+      companyExperience: v,
     }));
   };
   const handleProductChange = (v: string) => {
-    const keyowrds = v.split(",");
     setKeywordExpertisements((old) => ({
       ...old,
-      productExperience: keyowrds,
+      productExperience: v,
     }));
   };
 

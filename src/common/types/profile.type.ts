@@ -91,6 +91,13 @@ export interface KeywordsOfExpertiseInput {
   productExperience: string[];
   researchInterests: string[];
 }
+export interface CustomKeywordsOfExpertiseInput {
+  boardCertifications: string;
+  companyExperience: string;
+  drugsAndTechnology: string;
+  productExperience: string;
+  researchInterests: string;
+}
 
 // biography section
 export interface Misc {
