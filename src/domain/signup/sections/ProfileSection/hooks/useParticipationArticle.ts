@@ -1,59 +1,81 @@
-import { useState } from "react";
+import {
+  ParticipationBooleanAtom,
+  ParticipationInfoAtom,
+} from "@/recoil/Profile/participation.atom";
+import { useRecoilState } from "recoil";
 
 export const useParticipationArticle = () => {
-  const [phoneConsultation, setPhoneConsultation] = useState(false);
+  // state
+  const [participationBoolean, setParticipationBoolean] = useRecoilState(
+    ParticipationBooleanAtom
+  );
+  const [participations, setParticipations] = useRecoilState(
+    ParticipationInfoAtom
+  );
+
   const handlePhoneConsultationChange = (v: boolean) => {
-    setPhoneConsultation(v);
+    setParticipationBoolean((old) => ({ ...old, phoneConsultation: v }));
+    handleParitipationUpdateByKey("PhoneConsultations", v);
   };
 
-  const [inperson, setInperson] = useState(false);
-  const handleInPersonChange = (v: boolean) => {
-    setInperson(v);
+  const handleInPersonChange = async (v: boolean) => {
+    await setParticipationBoolean((old) => ({ ...old, inperson: v }));
+    handleParitipationUpdateByKey("InPersonMeetings", v);
   };
 
-  const [surveys, setSurveys] = useState(false);
   const handleSurveysChange = (v: boolean) => {
-    setSurveys(v);
+    setParticipationBoolean((old) => ({ ...old, surveys: v }));
+    handleParitipationUpdateByKey("Surveys", v);
   };
 
-  const [quickPolls, setQuickPolls] = useState(false);
   const handleQuickPollsChange = (v: boolean) => {
-    setQuickPolls(v);
+    setParticipationBoolean((old) => ({ ...old, quickPoll: v }));
+    handleParitipationUpdateByKey("QuickPolls", v);
   };
 
-  const [expert, setExpert] = useState(false);
-  const handleExpoerChange = (v: boolean) => {
-    setExpert(v);
+  const handleExpertChange = async (v: boolean) => {
+    await setParticipationBoolean((old) => ({ ...old, expert: v }));
+    handleParitipationUpdateByKey("ExpertWitness", v);
   };
 
-  const [engagement, setEngagement] = useState(false);
   const handleEngagementChange = (v: boolean) => {
-    setEngagement(v);
+    setParticipationBoolean((old) => ({ ...old, engagement: v }));
+    handleParitipationUpdateByKey("LongTermEngagement", v);
   };
+
+  const handleParitipationUpdateByKey = (key: string, isCheck: boolean) => {
+    if (isCheck) {
+      setParticipations((old) => [...old, key]);
+    } else {
+      const remains = participations.filter((it) => it != key);
+      setParticipations(remains);
+    }
+  };
+
   return {
     state: {
       phoneConsultation: {
-        isChecked: phoneConsultation,
+        isChecked: participationBoolean.phoneConsultation,
         onChange: handlePhoneConsultationChange,
       },
       inPerson: {
-        isChecked: inperson,
+        isChecked: participationBoolean.inperson,
         onChange: handleInPersonChange,
       },
       surveys: {
-        isChecked: surveys,
+        isChecked: participationBoolean.surveys,
         onChange: handleSurveysChange,
       },
       quickPolls: {
-        isChecked: quickPolls,
+        isChecked: participationBoolean.quickPoll,
         onChange: handleQuickPollsChange,
       },
       expert: {
-        isChecked: expert,
-        onChange: handleExpoerChange,
+        isChecked: participationBoolean.expert,
+        onChange: handleExpertChange,
       },
       engagement: {
-        isChecked: engagement,
+        isChecked: participationBoolean.engagement,
         onChange: handleEngagementChange,
       },
     },
