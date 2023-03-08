@@ -29,7 +29,7 @@ export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
         onTextChange={onItemChange.industry}
         isVertical
       />
-      <EmploymentTextInput
+      {/* <EmploymentTextInput
         id={itemState.id}
         label={"Business Type"}
         value={itemState.businessType}
@@ -42,7 +42,7 @@ export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
         value={itemState.department}
         onTextChange={onItemChange.department}
         isVertical
-      />
+      /> */}
       <EmploymentTextInput
         id={itemState.id}
         label={"Role"}

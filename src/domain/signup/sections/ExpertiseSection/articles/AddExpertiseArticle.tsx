@@ -16,7 +16,14 @@ export const AddExpertiseArticle = () => {
     >
       {expertisementItemState.list.map((it) => (
         <Stack key={it.id} spacing={isMedium ? "20px" : "1.11vw"}>
-          <Typography variant="subtitle2">{it.title}</Typography>
+          {it.id == 0 ? (
+            <Typography variant="subtitle2">{"Area of Expertise"}</Typography>
+          ) : (
+            <Typography variant="subtitle2">
+              {"Secondary Area of Expertise"}
+            </Typography>
+          )}
+
           <ExpertiseAreaItem
             itemState={it}
             onItemChange={expertisementItemState.onChange}

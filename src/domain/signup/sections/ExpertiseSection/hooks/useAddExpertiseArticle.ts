@@ -1,94 +1,81 @@
 import { ExpertiseItemType } from "@/common/types/item.type";
+import { AreaOfExpertiseAtom } from "@/recoil/Profile/expertisement.atom";
 import { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export const useAddExpertiseArticle = () => {
   // state
   const [itemCount, setItemCount] = useState(1);
+  const [expertisements, setExpertisements] =
+    useRecoilState(AreaOfExpertiseAtom);
 
-  const [expertiseItems, setExpertiseItems] = useState<ExpertiseItemType[]>([
-    {
-      id: 0,
-      title: "Primary Area of Expertise",
-      sector: "",
-      industry: "",
-      businessType: "",
-      department: "",
-      role: "",
-    },
-  ]);
+  const temp = [...expertisements];
 
   // button functions
   const onAddItem = useCallback(() => {
     setItemCount(itemCount + 1);
-    setExpertiseItems((old) => [
+    setExpertisements((old) => [
       ...old,
       {
         id: itemCount,
-        title: "Secondary Area of Expertise",
         sector: "",
         industry: "",
-        businessType: "",
-        department: "",
         role: "",
       },
     ]);
-  }, [itemCount]);
+  }, [itemCount, setExpertisements]);
 
   // 1, sector
   const handleSectorChange = (id: number, v: string) => {
-    const findIndex = expertiseItems.findIndex((item) => item.id === id);
-    const copiedItems = [...expertiseItems];
+    const findIndex = expertisements.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].sector = v;
-    setExpertiseItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], sector: v };
+    setExpertisements(temp);
   };
 
   // 2. industry
   const handleIndustryChange = (id: number, v: string) => {
-    const findIndex = expertiseItems.findIndex((item) => item.id === id);
-    const copiedItems = [...expertiseItems];
+    const findIndex = expertisements.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].industry = v;
-    setExpertiseItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], industry: v };
+    setExpertisements(temp);
   };
 
   // 3. businessType
-  const handleBusinessTypeChange = (id: number, v: string) => {
-    const findIndex = expertiseItems.findIndex((item) => item.id === id);
-    const copiedItems = [...expertiseItems];
+  // const handleBusinessTypeChange = (id: number, v: string) => {
+  //   const findIndex = expertisements.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].businessType = v;
-    setExpertiseItems(copiedItems);
-  };
+  //   temp[findIndex] = { ...temp[findIndex], : v };
+  //   setExpertisements(temp);
+  // };
 
   // 4. department
-  const handleDepartmentChange = (id: number, v: string) => {
-    const findIndex = expertiseItems.findIndex((item) => item.id === id);
-    const copiedItems = [...expertiseItems];
+  // const handleDepartmentChange = (id: number, v: string) => {
+  //   const findIndex = expertiseItems.findIndex((item) => item.id === id);
+  //   const copiedItems = [...expertiseItems];
 
-    copiedItems[findIndex].department = v;
-    setExpertiseItems(copiedItems);
-  };
+  //   copiedItems[findIndex].department = v;
+  //   setExpertiseItems(copiedItems);
+  // };
 
   // 5. role
   const handleRoleChange = (id: number, v: string) => {
-    const findIndex = expertiseItems.findIndex((item) => item.id === id);
-    const copiedItems = [...expertiseItems];
+    const findIndex = expertisements.findIndex((item) => item.id === id);
 
-    copiedItems[findIndex].role = v;
-    setExpertiseItems(copiedItems);
+    temp[findIndex] = { ...temp[findIndex], role: v };
+    setExpertisements(temp);
   };
 
-  const isButtonVisible = expertiseItems.length <= 1;
+  const isButtonVisible = expertisements.length <= 1;
 
   return {
     expertisementItemState: {
-      list: expertiseItems,
+      list: expertisements,
       onChange: {
         sector: handleSectorChange,
         industry: handleIndustryChange,
-        businessType: handleBusinessTypeChange,
-        department: handleDepartmentChange,
+        businessType: handleSectorChange,
+        department: handleSectorChange,
         role: handleRoleChange,
       },
     },

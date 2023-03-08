@@ -1,48 +1,69 @@
-import { useState } from "react";
+import { KeywordExpertisementAtom } from "@/recoil/Profile/expertisement.atom";
+import { useRecoilState } from "recoil";
 
 export const useKeywordExpertiseArticle = () => {
-  const [drugs, setDrugs] = useState("");
-  const [research, setResearch] = useState("");
-  const [certifications, setCertifications] = useState("");
-  const [company, setCompany] = useState("");
-  const [product, setProduct] = useState("");
+  // state
+  const [keywordExpertisements, setKeywordExpertisements] = useRecoilState(
+    KeywordExpertisementAtom
+  );
 
+  //functions
   const handleDrugsChange = (v: string) => {
-    setDrugs(v);
+    const keyowrds = v.split(",");
+    setKeywordExpertisements((old) => ({
+      ...old,
+      drugsAndTechnology: keyowrds,
+    }));
   };
   const handleResearchChange = (v: string) => {
-    setResearch(v);
+    const keyowrds = v.split(",");
+    setKeywordExpertisements((old) => ({
+      ...old,
+      researchInterests: keyowrds,
+    }));
   };
   const handleCertificationsChange = (v: string) => {
-    setCertifications(v);
+    const keyowrds = v.split(",");
+    setKeywordExpertisements((old) => ({
+      ...old,
+      boardCertifications: keyowrds,
+    }));
   };
   const handleCompanyChange = (v: string) => {
-    setCompany(v);
+    const keyowrds = v.split(",");
+    setKeywordExpertisements((old) => ({
+      ...old,
+      companyExperience: keyowrds,
+    }));
   };
   const handleProductChange = (v: string) => {
-    setProduct(v);
+    const keyowrds = v.split(",");
+    setKeywordExpertisements((old) => ({
+      ...old,
+      productExperience: keyowrds,
+    }));
   };
 
   return {
     state: {
       drugs: {
-        value: drugs,
+        value: keywordExpertisements.drugsAndTechnology,
         onChange: handleDrugsChange,
       },
       research: {
-        value: research,
+        value: keywordExpertisements.researchInterests,
         onChange: handleResearchChange,
       },
       certifications: {
-        value: certifications,
+        value: keywordExpertisements.boardCertifications,
         onChange: handleCertificationsChange,
       },
       company: {
-        value: company,
+        value: keywordExpertisements.companyExperience,
         onChange: handleCompanyChange,
       },
       product: {
-        value: product,
+        value: keywordExpertisements.productExperience,
         onChange: handleProductChange,
       },
     },
