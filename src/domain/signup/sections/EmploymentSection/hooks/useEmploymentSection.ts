@@ -1,17 +1,23 @@
-import { EmploymentInfoAtom } from "@/recoil/Profile/employment.atom";
-import { useCallback, useEffect, useState } from "react";
+import {
+  EmploymentExperienceAtom,
+  EmploymentInfoAtom,
+} from "@/recoil/Profile/employment.atom";
+import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export const useEmploymentSection = () => {
   // state
+  const currYear = new Date().getFullYear().toString();
   const [itemCount, setItemCount] = useState(1);
   const [employmentInfos, setEmploymentInfos] =
     useRecoilState(EmploymentInfoAtom);
+  const [experienceYear, setExperienceYear] = useRecoilState(
+    EmploymentExperienceAtom
+  );
   const temp = [...employmentInfos];
 
-  const [sectorExperience, setSectorExperience] = useState("");
   const handleSectorExperienceChange = (v: string) => {
-    setSectorExperience(v);
+    setExperienceYear(v);
   };
 
   // 0. curr employed 수정
@@ -41,7 +47,7 @@ export const useEmploymentSection = () => {
   const handleStartMonthChange = (id: number, v: string) => {
     const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    temp[findIndex] = { ...temp[findIndex], startedAt: v };
+    temp[findIndex] = { ...temp[findIndex], startedMonth: v };
     setEmploymentInfos(temp);
   };
 
@@ -49,7 +55,7 @@ export const useEmploymentSection = () => {
   const handleStartYearChange = (id: number, v: string) => {
     const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    temp[findIndex] = { ...temp[findIndex], startedAt: v };
+    temp[findIndex] = { ...temp[findIndex], startedYear: v };
     setEmploymentInfos(temp);
   };
 
@@ -57,7 +63,7 @@ export const useEmploymentSection = () => {
   const handleEndMonthChange = (id: number, v: string) => {
     const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    temp[findIndex] = { ...temp[findIndex], endedAt: v };
+    temp[findIndex] = { ...temp[findIndex], endedMonth: v };
     setEmploymentInfos(temp);
   };
 
@@ -65,7 +71,7 @@ export const useEmploymentSection = () => {
   const handleEndYearChange = (id: number, v: string) => {
     const findIndex = employmentInfos.findIndex((item) => item.id === id);
 
-    temp[findIndex] = { ...temp[findIndex], endedAt: v };
+    temp[findIndex] = { ...temp[findIndex], endedYear: v };
     setEmploymentInfos(temp);
   };
 
@@ -78,16 +84,18 @@ export const useEmploymentSection = () => {
         id: itemCount,
         isCurrentlyEmployed: false,
         employerName: "",
-        endedAt: "",
         jobTitle: "",
-        startedAt: "",
+        startedMonth: "01",
+        startedYear: currYear,
+        endedMonth: "01",
+        endedYear: currYear,
       },
     ]);
-  }, [itemCount, setEmploymentInfos]);
+  }, [currYear, itemCount, setEmploymentInfos]);
 
   const onDeleteItem = (itemId: number) => {
     const remainItemList = employmentInfos.filter((it) => it.id !== itemId);
-    setEmploymentInfos((old) => ({ ...old, items: remainItemList }));
+    setEmploymentInfos(remainItemList);
   };
 
   const isButtonVisible = employmentInfos.length <= 4;
@@ -95,7 +103,7 @@ export const useEmploymentSection = () => {
 
   return {
     sectorExperienceState: {
-      value: sectorExperience,
+      value: experienceYear,
       onChange: handleSectorExperienceChange,
     },
     employmentItemState: {

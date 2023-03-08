@@ -1,11 +1,11 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { EmploymentHistoryItemInput } from "@/recoil/Profile/employment.atom";
+import { CustomEmploymentHistoryItemInput } from "@/common/types/profile.type";
 import { Stack } from "@mui/material";
 import { DeleteButtonType, EmploymentItemProps } from "../types/item.type";
 import { EmploymentItem } from "./EmploymentItem";
 
 interface Props {
-  itemsState: EmploymentHistoryItemInput[];
+  itemsState: CustomEmploymentHistoryItemInput[];
   onItemChange: EmploymentItemProps;
   buttonState: DeleteButtonType;
 }

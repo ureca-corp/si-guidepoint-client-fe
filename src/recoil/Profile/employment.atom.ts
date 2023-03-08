@@ -1,36 +1,53 @@
-import { atom } from "recoil";
+import { CustomEmploymentHistoryItemInput } from "@/common/types/profile.type";
+import { atom, selector } from "recoil";
 
-export interface EmploymentHistoryItemInput {
-  id: number;
-  isCurrentlyEmployed: boolean;
-  employerName: string;
-  endedAt: string;
-  jobTitle: string;
-  startedAt: string;
-}
+const currYear = new Date().getFullYear().toString();
 
-export enum YearsOfExperience {
-  Between1And5 = "Between1And5",
-  Between6And10 = "Between6And10",
-  Between11And15 = "Between11And15",
-  Over16 = "Over16",
-}
-
-export type EmploymentHistoryInput = {
-  items: EmploymentHistoryItemInput[];
-  yearsOfExperience: YearsOfExperience;
-};
-
-export const EmploymentInfoAtom = atom<EmploymentHistoryItemInput[]>({
+export const EmploymentInfoAtom = atom<CustomEmploymentHistoryItemInput[]>({
   key: "employmentInfoState",
   default: [
     {
       id: 0,
       isCurrentlyEmployed: false,
       employerName: "",
-      endedAt: "",
       jobTitle: "",
-      startedAt: "",
+      startedMonth: "01",
+      startedYear: currYear,
+      endedMonth: "01",
+      endedYear: currYear,
     },
   ],
+});
+
+export const EmploymentExperienceAtom = atom<string>({
+  key: "employmentExperienceState",
+  default: "",
+});
+
+export const temp2 = selector({
+  key: "employmenttTemp",
+  get: ({ get }) => {
+    const employmentItems = get(EmploymentInfoAtom);
+    const experienceYear = get(EmploymentExperienceAtom);
+
+    const selectedExperienceYear = (year: string) => {
+      switch (year) {
+        case "1-5":
+          return "Between1And5";
+        case "6-10":
+          return "Between6And10";
+        case "11-15":
+          return "Between11And15";
+        case "16+":
+          return "Over16";
+        default:
+          return "";
+      }
+    };
+
+    return {
+      items: employmentItems,
+      yearsOfExperience: selectedExperienceYear(experienceYear),
+    };
+  },
 });

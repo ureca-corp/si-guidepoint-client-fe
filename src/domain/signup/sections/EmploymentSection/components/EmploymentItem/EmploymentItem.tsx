@@ -7,10 +7,10 @@ import { useCustomMediaQuery } from "@/common/theme/screen";
 import { DeleteButtonType, EmploymentItemProps } from "../../types/item.type";
 import { EmploymentTextInput } from "./EmploymentTextInput";
 import { EmploymentCheckbox } from "./EmploymentCheckbox";
-import { EmploymentHistoryItemInput } from "@/recoil/Profile/employment.atom";
+import { CustomEmploymentHistoryItemInput } from "@/common/types/profile.type";
 
 interface Props {
-  itemState: EmploymentHistoryItemInput;
+  itemState: CustomEmploymentHistoryItemInput;
   onItemChange: EmploymentItemProps;
   deleteButtonState: DeleteButtonType;
 }
@@ -48,21 +48,21 @@ export const EmploymentItem = ({
         id={itemState.id}
         startDateState={{
           month: {
-            value: itemState.startedAt,
+            value: itemState.startedMonth,
             onChange: onItemChange.startDate.month,
           },
           year: {
-            value: itemState.startedAt,
+            value: itemState.startedYear,
             onChange: onItemChange.startDate.year,
           },
         }}
         endDateState={{
           month: {
-            value: itemState.endedAt,
+            value: itemState.endedMonth,
             onChange: onItemChange.endDate.month,
           },
           year: {
-            value: itemState.endedAt,
+            value: itemState.endedYear,
             onChange: onItemChange.endDate.year,
           },
         }}
