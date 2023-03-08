@@ -1,12 +1,5 @@
-import { atom, selector } from "recoil";
-
-export interface PersonalInfoInput {
-  firstName: string;
-  lastName: string;
-  middleInitial: string;
-  prefix: string;
-  suffix: string;
-}
+import { PersonalInfoInput } from "@/common/types/profile.type";
+import { atom } from "recoil";
 
 export const PersonalInfoAtom = atom<PersonalInfoInput>({
   key: "personalInfoState",

@@ -1,14 +1,5 @@
+import { ResidenceAddressInput } from "@/common/types/profile.type";
 import { atom } from "recoil";
-
-export interface ResidenceAddressInput {
-  city: string;
-  country: string;
-  postalCode: string;
-  street1: string;
-  street2: string;
-  street3: string;
-  timeZone: string;
-}
 
 export const ResidenceInfoAtom = atom<ResidenceAddressInput>({
   key: "residenceInfoState",
