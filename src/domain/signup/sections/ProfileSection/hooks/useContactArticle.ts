@@ -1,17 +1,10 @@
 import { IM_TYPE, PHONE_TYPE } from "@/common/models/enum/form.enum";
-import { useState } from "react";
+import { ContactInfoAtom } from "@/recoil/Profile/contact.atom";
+import { useRecoilState } from "recoil";
 
 export const useContactArticle = () => {
   // state
-  const [phone, setPhone] = useState("");
-  const [alterPhone, setAlterPhone] = useState("");
-  const [fax, setFax] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-  const [im, setIm] = useState("");
-  const [imType, setImType] = useState("");
-  const [phoneOption, setPhoneOption] = useState("");
-  const [alterPhoneOption, setAlterPhoneOption] = useState("");
+  const [contactInfo, setContactInfo] = useRecoilState(ContactInfoAtom);
 
   //  select options
   const imOptions = Object.values(IM_TYPE);
@@ -19,68 +12,84 @@ export const useContactArticle = () => {
 
   // functions
   const handlePhoneChange = (v: string) => {
-    setPhone(v);
+    setContactInfo((old) => ({
+      ...old,
+      phoneInfo: { ...old.phoneInfo, number: v },
+    }));
   };
   const handleAlterPhoneChange = (v: string) => {
-    setAlterPhone(v);
+    setContactInfo((old) => ({
+      ...old,
+      alternatePhoneInfo: { ...old.alternatePhoneInfo, number: v },
+    }));
   };
-
   const handlePhoneOptionChange = (v: string) => {
-    setPhoneOption(v);
+    setContactInfo((old) => ({
+      ...old,
+      phoneInfo: { ...old.phoneInfo, type: v },
+    }));
   };
   const handleAlterPhoneOptionChange = (v: string) => {
-    setAlterPhoneOption(v);
+    setContactInfo((old) => ({
+      ...old,
+      alternatePhoneInfo: { ...old.alternatePhoneInfo, type: v },
+    }));
   };
-
   const handleFaxChange = (v: string) => {
-    setFax(v);
+    setContactInfo((old) => ({ ...old, fax: v }));
   };
   const handleEmailChange = (v: string) => {
-    setEmail(v);
+    setContactInfo((old) => ({ ...old, email: v }));
   };
   const handleConfirmEmailChange = (v: string) => {
-    setConfirmEmail(v);
+    setContactInfo((old) => ({ ...old, confirmEmail: v }));
   };
   const handleImChange = (v: string) => {
-    setIm(v);
+    setContactInfo((old) => ({
+      ...old,
+      instanceMessengerInfo: { ...old.instanceMessengerInfo, address: v },
+    }));
   };
   const handleImTypeChange = (v: string) => {
-    setImType(v);
+    setContactInfo((old) => ({
+      ...old,
+      instanceMessengerInfo: { ...old.instanceMessengerInfo, type: v },
+    }));
   };
   return {
     state: {
       phone: {
-        value: phone,
+        value: contactInfo.phoneInfo.number,
         onChange: handlePhoneChange,
-        option: phoneOption,
+        option: contactInfo.phoneInfo.type,
         onOptionChange: handlePhoneOptionChange,
         options: phoneOptions,
       },
       alterPhone: {
-        value: alterPhone,
+        value: contactInfo.alternatePhoneInfo.number,
         onChange: handleAlterPhoneChange,
-        option: alterPhoneOption,
+        option: contactInfo.alternatePhoneInfo.type,
         onOptionChange: handleAlterPhoneOptionChange,
         options: phoneOptions,
       },
       fax: {
-        value: fax,
+        value: contactInfo.fax,
         onChange: handleFaxChange,
       },
       email: {
-        value: email,
+        value: contactInfo.email,
         onChange: handleEmailChange,
       },
       confirmEamil: {
-        value: confirmEmail,
+        value: contactInfo.confirmEmail,
         onChange: handleConfirmEmailChange,
       },
       im: {
-        value: im,
+        value: contactInfo.instanceMessengerInfo.address,
         onChange: handleImChange,
       },
       imType: {
-        value: imType,
+        value: contactInfo.instanceMessengerInfo.type,
         onChange: handleImTypeChange,
         options: imOptions,
       },

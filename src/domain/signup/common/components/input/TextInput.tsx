@@ -8,6 +8,7 @@ export const TextInput = ({
   value,
   onChange,
   isVertical = false,
+  isTitleLefted = false,
 }: TextInputProps) => {
   const { isMedium } = useCustomMediaQuery();
 
@@ -17,7 +18,11 @@ export const TextInput = ({
       spacing={isVertical ? "0.55vw" : "1.11vw"}
       alignItems={isVertical ? "left" : "center"}
     >
-      <BasicLabel isVertical={isVertical} label={label} />
+      <BasicLabel
+        isVertical={isVertical}
+        isTitleLefted={isTitleLefted}
+        label={label}
+      />
       <TextField
         fullWidth
         value={value}

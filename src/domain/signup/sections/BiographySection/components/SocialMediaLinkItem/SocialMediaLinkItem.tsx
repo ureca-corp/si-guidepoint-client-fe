@@ -7,19 +7,21 @@ import {
   TextField,
 } from "@mui/material";
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
-import { MediaItem } from "../../types/item.type";
 import { SnsModels } from "@/common/models/input.model";
+import { SocialMediaProfile } from "@/common/types/profile.type";
 
 interface Props {
-  itemState: MediaItem;
+  id: number;
+  itemState: SocialMediaProfile;
   onChangeState: {
-    sns: (id: number, v: string) => void;
-    address: (id: number, v: string) => void;
+    type: (id: number, v: string) => void;
+    link: (id: number, v: string) => void;
   };
   onDelete: (itemId: number) => void;
 }
 
 export const SocialMediaLinkItem = ({
+  id,
   itemState,
   onChangeState,
   onDelete,
@@ -29,8 +31,8 @@ export const SocialMediaLinkItem = ({
       <FormControl sx={{ width: "200px" }}>
         <Select
           id="demo-simple-select"
-          value={itemState.sns}
-          onChange={(e) => onChangeState.sns(itemState.id, e.target.value)}
+          value={itemState.type}
+          onChange={(e) => onChangeState.type(id, e.target.value)}
         >
           {SnsModels.map((it) => (
             <MenuItem key={it} value={it}>
@@ -41,10 +43,10 @@ export const SocialMediaLinkItem = ({
       </FormControl>
       <TextField
         fullWidth
-        value={itemState.address}
-        onChange={(e) => onChangeState.address(itemState.id, e.target.value)}
+        value={itemState.link}
+        onChange={(e) => onChangeState.link(id, e.target.value)}
       />
-      <IconButton onClick={() => onDelete(itemState.id)}>
+      <IconButton onClick={() => onDelete(id)}>
         <DisabledByDefaultRoundedIcon color="error" />
       </IconButton>
     </Stack>

@@ -1,48 +1,70 @@
-import { useCustomMediaQuery } from "@/common/theme/screen";
 import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { TextInputWithCheckbox } from "@/domain/signup/common/components/input/TextInputWithCheckbox";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { Stack, Typography } from "@mui/material";
 import { useAssistantArticle } from "../hooks/useAssistantArticle";
+import { css } from "@emotion/react";
+import { useCustomMediaQuery } from "@/common/theme/screen";
+import { LightColor } from "@/common/theme/colors";
 
 export const AssistanceArticle = () => {
   const { state } = useAssistantArticle();
+  const { isMedium } = useCustomMediaQuery();
 
   return (
     <ArticleTemplate title="Assistant Contact Information">
-      <TextInput
-        label={"Assistant's Name and Phone"}
-        value={state.assist1.name}
-        onChange={state.assist1.onNameChange}
-      />
-      <TextInputWithCheckbox
-        textProps={{
-          label: "Assistant's Email",
-          value: state.assist1.email,
-          onChange: state.assist1.onEmailChange,
-        }}
-        checkboxProps={{
-          label: "Copy Assistant on Email",
-          value: state.assist1.checked,
-          onChange: state.assist1.onCheckChange,
-        }}
-      />
-      <TextInput
-        label={"Assistant's Name and Phone"}
-        value={state.assist2.name}
-        onChange={state.assist2.onNameChange}
-      />
-      <TextInputWithCheckbox
-        textProps={{
-          label: "Assistant's Email",
-          value: state.assist2.email,
-          onChange: state.assist2.onEmailChange,
-        }}
-        checkboxProps={{
-          label: "Copy Assistant on Email",
-          value: state.assist2.checked,
-          onChange: state.assist2.onCheckChange,
-        }}
-      />
+      <Stack css={sx.item(isMedium)}>
+        <Typography variant="h6">Assistant 1</Typography>
+        <TextInput
+          label={"Name"}
+          value={state.assist1.name}
+          onChange={state.assist1.onNameChange}
+          isTitleLefted
+        />
+        <TextInput
+          label={"Phone"}
+          value={state.assist1.phone}
+          onChange={state.assist1.onPhoneChange}
+          isTitleLefted
+        />
+        <TextInput
+          label={"Email"}
+          value={state.assist1.email}
+          onChange={state.assist1.onEmailChange}
+          isTitleLefted
+        />
+      </Stack>
+
+      <Stack css={sx.item(isMedium)}>
+        <Typography variant="h6">Assistant 2</Typography>
+        <TextInput
+          label={"Name"}
+          value={state.assist2.name}
+          onChange={state.assist2.onNameChange}
+          isTitleLefted
+        />
+        <TextInput
+          label={"Phone"}
+          value={state.assist2.phone}
+          onChange={state.assist2.onPhoneChange}
+          isTitleLefted
+        />
+        <TextInput
+          label={"Email"}
+          value={state.assist2.email}
+          onChange={state.assist2.onEmailChange}
+          isTitleLefted
+        />
+      </Stack>
     </ArticleTemplate>
   );
+};
+
+const sx = {
+  item: (isMedium: boolean) => css`
+    width: 100%;
+    gap: ${isMedium ? "20px" : "1.11vw"};
+    border: 1px solid ${LightColor.BorderColor1};
+    padding: ${isMedium ? "20px" : "1.11vw"};
+    border-radius: 12px;
+  `,
 };

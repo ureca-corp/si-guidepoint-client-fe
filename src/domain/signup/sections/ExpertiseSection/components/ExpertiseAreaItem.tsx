@@ -1,9 +1,10 @@
 import { LightColor } from "@/common/theme/colors";
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ExpertiseItemType } from "@/common/types/item.type";
 import { css } from "@emotion/react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { EmploymentTextInput } from "../../EmploymentSection/components/EmploymentItem/EmploymentTextInput";
-import { ExpertiseItemProps, ExpertiseItemType } from "../types/item.type";
+import { ExpertiseItemProps } from "../types/item.type";
 
 interface Props {
   itemState: ExpertiseItemType;
@@ -28,7 +29,7 @@ export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
         onTextChange={onItemChange.industry}
         isVertical
       />
-      <EmploymentTextInput
+      {/* <EmploymentTextInput
         id={itemState.id}
         label={"Business Type"}
         value={itemState.businessType}
@@ -41,7 +42,7 @@ export const ExpertiseAreaItem = ({ itemState, onItemChange }: Props) => {
         value={itemState.department}
         onTextChange={onItemChange.department}
         isVertical
-      />
+      /> */}
       <EmploymentTextInput
         id={itemState.id}
         label={"Role"}

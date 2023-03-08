@@ -1,20 +1,3 @@
-import { TextProps } from "@/domain/signup/common/types/input.type";
-
-export interface EmploymentItemType {
-  id: number;
-  isCurrEmployed: boolean;
-  employer: string;
-  job: string;
-  startDate: {
-    month: string;
-    year: string;
-  };
-  endDate: {
-    month: string;
-    year: string;
-  };
-}
-
 export interface DeleteButtonType {
   isVisible: boolean;
   onClick: (id: number) => void;

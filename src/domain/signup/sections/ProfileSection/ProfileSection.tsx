@@ -7,7 +7,7 @@ import {
   EmptyArticle,
   ParticipationArticle,
   PersonalArticle,
-  PhysicalArticle,
+  ResidenceArticle,
 } from "./articles";
 import { useFetchTerms } from "@/infra/terms/hooks/useFetchTerms";
 
@@ -25,7 +25,7 @@ export const ProfileSection = () => {
         <ParticipationArticle />
       </ArticlesWrapper>
       <ArticlesWrapper>
-        <PhysicalArticle />
+        <ResidenceArticle />
         {isMedium || <EmptyArticle />}
       </ArticlesWrapper>
     </Stack>

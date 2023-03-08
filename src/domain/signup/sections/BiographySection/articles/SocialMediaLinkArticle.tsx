@@ -1,14 +1,14 @@
+import { SocialMediaProfile } from "@/common/types/profile.type";
 import { ArticleTemplate } from "@/domain/signup/common/components/template";
 import { AddItemButton } from "../../EmploymentSection/components";
 import { SocialMediaLinkItem } from "../components/SocialMediaLinkItem";
-import { MediaItem } from "../types/item.type";
 
 interface ArticleProps {
   props: {
-    list: MediaItem[];
+    list: SocialMediaProfile[];
     onChange: {
-      sns: (id: number, v: string) => void;
-      address: (id: number, v: string) => void;
+      type: (id: number, v: string) => void;
+      link: (id: number, v: string) => void;
     };
     addButton: {
       isVisible: boolean;
@@ -23,9 +23,10 @@ interface ArticleProps {
 export const SocialMediaLinkArticle = ({ props }: ArticleProps) => {
   return (
     <ArticleTemplate title="Hyperlinks to Social Media Profiles">
-      {props.list.map((it) => (
+      {props.list.map((it, index) => (
         <SocialMediaLinkItem
-          key={it.id}
+          key={index}
+          id={index}
           itemState={it}
           onChangeState={props.onChange}
           onDelete={props.deleteButton.onClick}

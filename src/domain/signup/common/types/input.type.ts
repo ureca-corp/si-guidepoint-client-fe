@@ -10,6 +10,7 @@ export interface TextInputProps extends TextProps {
   onTextChange?: (id: number, newTxt: string) => void;
   isVertical?: boolean;
   isNecessary?: boolean;
+  isTitleLefted?: boolean;
 }
 
 export interface EmploymentTextInputProps {

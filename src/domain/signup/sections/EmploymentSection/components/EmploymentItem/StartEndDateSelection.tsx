@@ -6,7 +6,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useCallback } from "react";
 import { YearDateProps } from "../../types/item.type";
 
 type StartEndDateSelectionProps = {
@@ -23,19 +22,6 @@ export const StartEndDateSelection = ({
   isVertical,
 }: StartEndDateSelectionProps) => {
   const nowYear = +new Date().getFullYear();
-
-  const years = () => {
-    let years = [];
-    let nowYear = +new Date().getFullYear();
-    let i = 0;
-
-    for (i; i++; i < 100) {
-      years.push(nowYear - i);
-      console.log(1);
-    }
-
-    return years;
-  };
 
   return (
     <Stack

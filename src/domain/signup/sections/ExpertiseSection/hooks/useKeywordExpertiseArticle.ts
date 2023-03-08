@@ -1,48 +1,64 @@
-import { useState } from "react";
+import { CustomKeywordExpertisementAtom } from "@/recoil/Profile/expertisement.atom";
+import { useRecoilState } from "recoil";
 
 export const useKeywordExpertiseArticle = () => {
-  const [drugs, setDrugs] = useState("");
-  const [research, setResearch] = useState("");
-  const [certifications, setCertifications] = useState("");
-  const [company, setCompany] = useState("");
-  const [product, setProduct] = useState("");
+  // state
+  const [keywordExpertisements, setKeywordExpertisements] = useRecoilState(
+    CustomKeywordExpertisementAtom
+  );
 
+  //functions
   const handleDrugsChange = (v: string) => {
-    setDrugs(v);
+    setKeywordExpertisements((old) => ({
+      ...old,
+      drugsAndTechnology: v,
+    }));
   };
   const handleResearchChange = (v: string) => {
-    setResearch(v);
+    setKeywordExpertisements((old) => ({
+      ...old,
+      researchInterests: v,
+    }));
   };
   const handleCertificationsChange = (v: string) => {
-    setCertifications(v);
+    setKeywordExpertisements((old) => ({
+      ...old,
+      boardCertifications: v,
+    }));
   };
   const handleCompanyChange = (v: string) => {
-    setCompany(v);
+    setKeywordExpertisements((old) => ({
+      ...old,
+      companyExperience: v,
+    }));
   };
   const handleProductChange = (v: string) => {
-    setProduct(v);
+    setKeywordExpertisements((old) => ({
+      ...old,
+      productExperience: v,
+    }));
   };
 
   return {
     state: {
       drugs: {
-        value: drugs,
+        value: keywordExpertisements.drugsAndTechnology,
         onChange: handleDrugsChange,
       },
       research: {
-        value: research,
+        value: keywordExpertisements.researchInterests,
         onChange: handleResearchChange,
       },
       certifications: {
-        value: certifications,
+        value: keywordExpertisements.boardCertifications,
         onChange: handleCertificationsChange,
       },
       company: {
-        value: company,
+        value: keywordExpertisements.companyExperience,
         onChange: handleCompanyChange,
       },
       product: {
-        value: product,
+        value: keywordExpertisements.productExperience,
         onChange: handleProductChange,
       },
     },
