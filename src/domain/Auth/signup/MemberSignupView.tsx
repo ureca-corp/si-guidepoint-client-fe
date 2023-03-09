@@ -1,6 +1,4 @@
 import { BasicDialog } from "@/common/components/dialog/BasicDialog";
-import { CustomCircularProgress } from "@/common/components/progress";
-import { LightColor } from "@/common/theme/colors";
 import { MediaQueries } from "@/common/theme/screen";
 import { css } from "@emotion/react";
 import { LockRounded, MailOutlineRounded } from "@mui/icons-material";
@@ -124,12 +122,6 @@ const sx = {
   `,
   input: css`
     margin-bottom: 20px;
-  `,
-  forgotPassword: css`
-    text-align: center;
-    color: ${LightColor.MainSurfaceColor};
-    margin-bottom: 20px;
-    cursor: pointer;
   `,
   button: css`
     padding: 12px;

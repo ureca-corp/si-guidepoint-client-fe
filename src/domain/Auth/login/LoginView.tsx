@@ -1,3 +1,4 @@
+import { BasicDialog } from "@/common/components/dialog/BasicDialog";
 import { LightColor } from "@/common/theme/colors";
 import { MediaQueries } from "@/common/theme/screen";
 import { css } from "@emotion/react";
@@ -13,8 +14,7 @@ import Link from "next/link";
 import { useLoginView } from "./useLoginView";
 
 export const LoginView = () => {
-  const { email, handleEmailChange, pw, handlePwChange, isFilled } =
-    useLoginView();
+  const { email, pw, buttonState, fetchState } = useLoginView();
 
   return (
     <div css={sx.root}>
@@ -27,10 +27,16 @@ export const LoginView = () => {
         </div>
 
         <TextField
-          value={email}
-          onChange={(e) => handleEmailChange(e.target.value)}
+          value={email.value}
+          onChange={(e) => email.onChange(e.target.value)}
           css={sx.input}
           label="이메일 입력"
+          error={email.value !== "" && email.isError}
+          helperText={
+            email.value !== "" &&
+            email.isError &&
+            "이메일 형식이 맞지 않습니다."
+          }
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -39,11 +45,10 @@ export const LoginView = () => {
             ),
           }}
         />
-
         <TextField
           type="password"
-          value={pw}
-          onChange={(e) => handlePwChange(e.target.value)}
+          value={pw.value}
+          onChange={(e) => pw.onChange(e.target.value)}
           css={sx.input}
           label="비밀번호 입력"
           InputProps={{
@@ -61,11 +66,16 @@ export const LoginView = () => {
             </Typography>
           </div>
         </Link>
-
-        <Button disabled={!isFilled} css={sx.button} variant="contained">
-          LOGIN
+        <Button
+          variant="contained"
+          css={sx.button}
+          onClick={() => buttonState.onSubmit()}
+          disabled={buttonState.disabled || fetchState.loading}
+        >
+          {"LOGIN"}
         </Button>
       </Card>
+      <BasicDialog />
     </div>
   );
 };

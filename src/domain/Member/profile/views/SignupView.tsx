@@ -1,3 +1,4 @@
+import LocalStorage from "@/common/LocalStorage/LocalStorage";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack } from "@mui/material";
 import { BiographySection } from "../sections/BiographySection";
@@ -7,6 +8,7 @@ import { ProfileSection } from "../sections/ProfileSection";
 
 export const SignupView = () => {
   const { isMedium } = useCustomMediaQuery();
+
   return (
     <Stack
       width="100%"
