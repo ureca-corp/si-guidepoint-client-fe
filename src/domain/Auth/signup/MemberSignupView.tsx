@@ -20,7 +20,7 @@ export const MemberSignupView = () => {
     <div css={sx.root}>
       <Card css={sx.inner}>
         <div css={sx.title}>
-          <Typography variant={"h4"}>{"SING UP"}</Typography>
+          <Typography variant={"h4"}>{"SIGN UP"}</Typography>
         </div>
         <div css={sx.text}>
           <Typography variant={"body1"}>
