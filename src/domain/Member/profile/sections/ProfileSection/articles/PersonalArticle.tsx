@@ -1,6 +1,6 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { FullSelection } from "@/domain/signup/common/components/selection/FullSelection";
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { TextInput } from "@/domain/Member/profile/common/components/input/TextInput";
+import { FullSelection } from "@/domain/Member/profile/common/components/selection/FullSelection";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
 import { usePersonalArticle } from "../hooks/usePersonalArticle";
 
 export const PersonalArticle = () => {

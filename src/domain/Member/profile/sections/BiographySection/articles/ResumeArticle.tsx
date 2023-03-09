@@ -1,4 +1,4 @@
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
 import { Button, Typography } from "@mui/material";
 
 interface Props {

@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { css } from "@emotion/react";
 import { LightColor } from "@/common/theme/colors";
 import { StartEndDateSelection } from "./StartEndDateSelection";
-import { DeleteButton } from "@/domain/signup/common/components/button";
+import { DeleteButton } from "@/domain/Member/profile/common/components/button";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import { DeleteButtonType, EmploymentItemProps } from "../../types/item.type";
 import { EmploymentTextInput } from "./EmploymentTextInput";

@@ -1,4 +1,4 @@
-import { ArticleWithDescTemplate } from "@/domain/signup/common/components/template/ArticleWithDescTemplate";
+import { ArticleWithDescTemplate } from "@/domain/Member/profile/common/components/template/ArticleWithDescTemplate";
 import { TextField, Typography } from "@mui/material";
 
 type ArticleProps = {

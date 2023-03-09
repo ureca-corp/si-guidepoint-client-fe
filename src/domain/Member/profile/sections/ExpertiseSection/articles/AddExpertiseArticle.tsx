@@ -1,5 +1,5 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { ArticleWithDescTemplate } from "@/domain/signup/common/components/template/ArticleWithDescTemplate";
+import { ArticleWithDescTemplate } from "@/domain/Member/profile/common/components/template/ArticleWithDescTemplate";
 import { Stack, Typography } from "@mui/material";
 import { AddItemButton } from "../../EmploymentSection/components";
 import { ExpertiseAreaItem } from "../components";

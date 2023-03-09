@@ -1,5 +1,5 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { TextInput } from "@/domain/Member/profile/common/components/input/TextInput";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
 import { Stack, Typography } from "@mui/material";
 import { useAssistantArticle } from "../hooks/useAssistantArticle";
 import { css } from "@emotion/react";

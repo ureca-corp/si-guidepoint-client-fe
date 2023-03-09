@@ -1,6 +1,6 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
-import { BasicLabel } from "@/domain/signup/common/components/label";
-import { EmploymentTextInputProps } from "@/domain/signup/common/types/input.type";
+import { BasicLabel } from "@/domain/Member/profile/common/components/label";
+import { EmploymentTextInputProps } from "@/domain/Member/profile/common/types/input.type";
 import { Stack, TextField } from "@mui/material";
 
 export const EmploymentTextInput = ({

@@ -1,5 +1,5 @@
-import { BasicCheckbox } from "@/domain/signup/common/components/checkbox";
-import { CheckboxArticleTemplate } from "@/domain/signup/common/components/template";
+import { BasicCheckbox } from "@/domain/Member/profile/common/components/checkbox";
+import { CheckboxArticleTemplate } from "@/domain/Member/profile/common/components/template";
 import { useParticipationArticle } from "../hooks/useParticipationArticle";
 
 export const ParticipationArticle = () => {

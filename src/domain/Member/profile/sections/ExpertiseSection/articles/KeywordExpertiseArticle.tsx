@@ -1,5 +1,5 @@
-import { ArticleWithDescTemplate } from "@/domain/signup/common/components/template/ArticleWithDescTemplate";
-import { TextArea } from "@/domain/signup/common/components/textarea";
+import { ArticleWithDescTemplate } from "@/domain/Member/profile/common/components/template/ArticleWithDescTemplate";
+import { TextArea } from "@/domain/Member/profile/common/components/textarea";
 import { useKeywordExpertiseArticle } from "../hooks/useKeywordExpertiseArticle";
 
 export const KeywordExpertiseArticle = () => {

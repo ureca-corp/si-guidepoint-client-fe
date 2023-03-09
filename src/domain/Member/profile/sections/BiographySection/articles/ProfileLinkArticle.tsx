@@ -1,5 +1,5 @@
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { TextProps } from "@/domain/signup/common/types/input.type";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
+import { TextProps } from "@/domain/Member/profile/common/types/input.type";
 import { TextField } from "@mui/material";
 
 type ArticleProps = {

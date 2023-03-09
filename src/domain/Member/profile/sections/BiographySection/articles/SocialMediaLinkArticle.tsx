@@ -1,5 +1,5 @@
 import { SocialMediaProfile } from "@/common/types/profile.type";
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
 import { AddItemButton } from "../../EmploymentSection/components";
 import { SocialMediaLinkItem } from "../components/SocialMediaLinkItem";
 

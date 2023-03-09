@@ -1,6 +1,6 @@
-import { TextInput } from "@/domain/signup/common/components/input/TextInput";
-import { ArticleTemplate } from "@/domain/signup/common/components/template";
-import { TextArea } from "@/domain/signup/common/components/textarea";
+import { TextInput } from "@/domain/Member/profile/common/components/input/TextInput";
+import { ArticleTemplate } from "@/domain/Member/profile/common/components/template";
+import { TextArea } from "@/domain/Member/profile/common/components/textarea";
 import { useResidenceArticle } from "../hooks/useResidenceArticle";
 
 export const ResidenceArticle = () => {
