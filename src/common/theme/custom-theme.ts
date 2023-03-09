@@ -75,13 +75,19 @@ export const lightTheme = createTheme({
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: `${LightColor.BorderColor1} !important`,
-
             transition: "border-color 0.3s ease-in-out",
           },
 
           "&:hover": {
             ".MuiOutlinedInput-notchedOutline": {
               borderColor: `${LightColor.PrimaryColor3} !important`,
+            },
+          },
+
+          "& .Mui-error": {
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: `red !important`,
+              transition: "unset !important",
             },
           },
         },

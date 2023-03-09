@@ -25,8 +25,8 @@ export const useFetchFileUrl = () => {
           "Content-Type": "application/json",
         },
       },
-      onError: (error: ApolloError) => {
-        console.log(error);
+      onError: (err: ApolloError) => {
+        console.log(err);
       },
       onCompleted: (res: QueryResponse) => {
         FileUpload(res.requestFileUploadSignedUrl, file!);
