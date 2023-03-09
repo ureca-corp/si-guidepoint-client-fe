@@ -26,7 +26,7 @@ export const UseDialogOpen = () => {
   };
 
   const onClose = () => {
-    setDialogState((old) => ({ ...old, isOpen: false }));
+    setDialogState({ isOpen: false, msg: "", href: "" });
   };
 
   return {
