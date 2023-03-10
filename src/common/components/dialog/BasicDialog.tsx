@@ -14,9 +14,7 @@ export const BasicDialog = () => {
           onClick={
             hrefState.value == ""
               ? () => openState.onClose()
-              : () => {
-                  router.push(hrefState.value);
-                }
+              : () => router.push(hrefState.value)
           }
         >
           {"확인"}
