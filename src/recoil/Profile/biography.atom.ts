@@ -1,8 +1,25 @@
 import { Misc, SocialMediaProfile } from "@/common/types/profile.type";
 import { atom, selector } from "recoil";
 
-export const BiographyInfoAtom = atom<Misc>({
+export const BiographyInfoAtom = selector({
   key: "biographyInfoState",
+  get: ({ get }) => {
+    const { biography, complianceConflicts, linkedInProfileLink, resumeLink } =
+      get(BiographyTextfieldsInfoAtom);
+    const medias = get(MediaAtom);
+
+    return {
+      biography,
+      complianceConflicts,
+      linkedInProfileLink,
+      resumeLink,
+      socialMediaProfiles: medias,
+    };
+  },
+});
+
+export const BiographyTextfieldsInfoAtom = atom<Misc>({
+  key: "biographyTextfieldsInfoState",
   default: {
     biography: "",
     complianceConflicts: "",

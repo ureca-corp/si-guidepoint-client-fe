@@ -1,9 +1,12 @@
-import { CustomEmploymentHistoryItemInput } from "@/common/types/profile.type";
+import {
+  CustomEmploymentHistoryItemInput,
+  EmploymentHistoryItemInput,
+} from "@/common/types/profile.type";
 import { atom, selector } from "recoil";
 
 const currYear = new Date().getFullYear().toString();
 
-export const EmploymentInfoAtom = atom<CustomEmploymentHistoryItemInput[]>({
+export const EmploymentItemAtom = atom<CustomEmploymentHistoryItemInput[]>({
   key: "employmentInfoState",
   default: [
     {
@@ -24,10 +27,10 @@ export const EmploymentExperienceAtom = atom<string>({
   default: "",
 });
 
-export const temp2 = selector({
+export const EmploymentInfoAtom = selector({
   key: "employmenttTemp",
   get: ({ get }) => {
-    const employmentItems = get(EmploymentInfoAtom);
+    const employmentItems = get(EmploymentItemAtom);
     const experienceYear = get(EmploymentExperienceAtom);
 
     const selectedExperienceYear = (year: string) => {
@@ -45,8 +48,26 @@ export const temp2 = selector({
       }
     };
 
+    const getDateFormattedItems = (
+      items: CustomEmploymentHistoryItemInput[]
+    ) => {
+      const list: EmploymentHistoryItemInput[] = [];
+      items.map((it) =>
+        list.push({
+          id: it.id,
+          isCurrentlyEmployed: it.isCurrentlyEmployed,
+          employerName: it.employerName,
+          endedAt: `${it.endedYear}-${it.endedMonth}`,
+          jobTitle: it.jobTitle,
+          startedAt: `${it.startedYear}-${it.startedMonth}`,
+        })
+      );
+
+      return list;
+    };
+
     return {
-      items: employmentItems,
+      items: getDateFormattedItems(employmentItems),
       yearsOfExperience: selectedExperienceYear(experienceYear),
     };
   },

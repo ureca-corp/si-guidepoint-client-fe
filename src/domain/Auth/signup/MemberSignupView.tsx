@@ -1,4 +1,4 @@
-import { BasicDialog } from "@/common/components/dialog/BasicDialog";
+import { BasicDialog } from "@/common/components/Dialog/BasicDialog";
 import { MediaQueries } from "@/common/theme/screen";
 import { css } from "@emotion/react";
 import { LockRounded, MailOutlineRounded } from "@mui/icons-material";
