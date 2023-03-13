@@ -17,7 +17,7 @@ export const LoginView = () => {
   const { email, pw, buttonState, fetchState } = useLoginView();
 
   return (
-    <div css={sx.root}>
+    <form css={sx.root}>
       <Card css={sx.inner}>
         <div css={sx.title}>
           <Typography variant={"h4"}>{"LOGIN"}</Typography>
@@ -27,6 +27,7 @@ export const LoginView = () => {
         </div>
 
         <TextField
+          autoComplete="on"
           value={email.value}
           onChange={(e) => email.onChange(e.target.value)}
           css={sx.input}
@@ -47,6 +48,7 @@ export const LoginView = () => {
         />
         <TextField
           type="password"
+          autoComplete="off"
           value={pw.value}
           onChange={(e) => pw.onChange(e.target.value)}
           css={sx.input}
@@ -74,9 +76,18 @@ export const LoginView = () => {
         >
           {"LOGIN"}
         </Button>
+        <Link
+          style={{ textDecoration: "none" }}
+          href="/member-signup"
+          css={sx.signup}
+        >
+          <Typography color={LightColor.TextColor1} variant={"caption"}>
+            {"SIGN UP"}
+          </Typography>
+        </Link>
       </Card>
       <BasicDialog />
-    </div>
+    </form>
   );
 };
 
@@ -95,6 +106,8 @@ const sx = {
     width: 100%;
     padding: 48px 36px;
     margin-top: 80px;
+    position: relative;
+
     @media ${MediaQueries.sm} {
       padding: 48px 12px;
     }
@@ -117,5 +130,13 @@ const sx = {
   `,
   button: css`
     padding: 12px;
+  `,
+  signup: css`
+    position: absolute;
+    right: 36px;
+    bottom: 20px;
+    @media ${MediaQueries.sm} {
+      right: 12px;
+    }
   `,
 };

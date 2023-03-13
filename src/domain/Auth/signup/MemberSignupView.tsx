@@ -15,7 +15,7 @@ export const MemberSignupView = () => {
   const { email, pw, confirmPw, button, fetchState } = useMemberSignupView();
 
   return (
-    <div css={sx.root}>
+    <form css={sx.root}>
       <Card css={sx.inner}>
         <div css={sx.title}>
           <Typography variant={"h4"}>{"SIGN UP"}</Typography>
@@ -27,6 +27,7 @@ export const MemberSignupView = () => {
         </div>
         <TextField
           label="이메일 입력"
+          autoComplete="on"
           css={sx.input}
           value={email.value}
           onChange={(e) => email.onChange(e.target.value)}
@@ -46,6 +47,7 @@ export const MemberSignupView = () => {
         />
         <TextField
           type="password"
+          autoComplete="off"
           label="비밀번호 입력"
           css={sx.input}
           value={pw.value}
@@ -66,6 +68,7 @@ export const MemberSignupView = () => {
         />
         <TextField
           type="password"
+          autoComplete="off"
           label="비밀번호 확인"
           css={sx.input}
           value={confirmPw.value}
@@ -90,7 +93,7 @@ export const MemberSignupView = () => {
         </Button>
       </Card>
       <BasicDialog />
-    </div>
+    </form>
   );
 };
 
