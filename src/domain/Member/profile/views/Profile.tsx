@@ -6,7 +6,7 @@ import { EmploymentSection } from "../sections/EmploymentSection";
 import { ExpertiseSection } from "../sections/ExpertiseSection";
 import { ProfileSection } from "../sections/ProfileSection";
 
-export const SignupView = () => {
+export const Profile = () => {
   const { isMedium } = useCustomMediaQuery();
 
   return (
