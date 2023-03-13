@@ -1,4 +1,4 @@
-import LocalStorage from "@/common/LocalStorage/LocalStorage";
+import { BasicDialog } from "@/common/components/Dialog/BasicDialog";
 import { useCustomMediaQuery } from "@/common/theme/screen";
 import { Stack } from "@mui/material";
 import { BiographySection } from "../sections/BiographySection";
@@ -19,6 +19,7 @@ export const SignupView = () => {
       <EmploymentSection />
       <ExpertiseSection />
       <BiographySection />
+      <BasicDialog />
     </Stack>
   );
 };

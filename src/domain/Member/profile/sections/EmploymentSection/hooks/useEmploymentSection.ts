@@ -1,6 +1,6 @@
 import {
   EmploymentExperienceAtom,
-  EmploymentInfoAtom,
+  EmploymentItemAtom,
 } from "@/recoil/Profile/employment.atom";
 import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -10,7 +10,7 @@ export const useEmploymentSection = () => {
   const currYear = new Date().getFullYear().toString();
   const [itemCount, setItemCount] = useState(1);
   const [employmentInfos, setEmploymentInfos] =
-    useRecoilState(EmploymentInfoAtom);
+    useRecoilState(EmploymentItemAtom);
   const [experienceYear, setExperienceYear] = useRecoilState(
     EmploymentExperienceAtom
   );

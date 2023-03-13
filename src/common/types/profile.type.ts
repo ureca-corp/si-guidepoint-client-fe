@@ -43,6 +43,16 @@ export interface ResidenceAddressInput {
   timeZone: string;
 }
 
+// participation section
+export enum Participation {
+  ExpertWitness = "ExpertWitness",
+  InPersonMeetings = "InPersonMeetings",
+  LongTermEngagement = "LongTermEngagement",
+  PhoneConsultations = "PhoneConsultations",
+  QuickPolls = "QuickPolls",
+  Surveys = "Surveys",
+}
+
 // employment section
 export type EmploymentHistoryInput = {
   items: EmploymentHistoryItemInput[];
@@ -110,4 +120,16 @@ export interface Misc {
 export interface SocialMediaProfile {
   link: string;
   type: string;
+}
+
+// profile
+export interface CreateProfileInput {
+  assistantContactInfos: AssistantInfoInput[];
+  contactInfo: ContactInfoInput;
+  employmentHistory: EmploymentHistoryInput;
+  expertiseHistory: ExpertiseHistoryInput;
+  misc: Misc;
+  participations: Participation[];
+  personalInfo: PersonalInfoInput;
+  residenceAddress: ResidenceAddressInput;
 }

@@ -1,4 +1,8 @@
-import { BiographyInfoAtom, ResumeFile } from "@/recoil/Profile/biography.atom";
+import LocalStorage from "@/common/LocalStorage/LocalStorage";
+import {
+  BiographyTextfieldsInfoAtom,
+  ResumeFile,
+} from "@/recoil/Profile/biography.atom";
 import { ApolloError, gql, useLazyQuery } from "@apollo/client";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { FileUpload } from "./useUploadFileHook";
@@ -13,15 +17,16 @@ const FETCH_FILE_URL = gql`
 `;
 
 export const useFetchFileUrl = () => {
+  const accessToken = LocalStorage.getItem("accessToken");
   const file = useRecoilValue(ResumeFile);
-  const setBiographyInfo = useSetRecoilState(BiographyInfoAtom);
+  const setBiographyInfo = useSetRecoilState(BiographyTextfieldsInfoAtom);
 
   const [requeryFileUrl, { data }] = useLazyQuery<QueryResponse>(
     FETCH_FILE_URL,
     {
       context: {
         headers: {
-          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiYXNkQGdtYWlsLmNvbSIsInJvbGUiOiJnZW5lcmFsIiwiaWF0IjoxNjc4MjU4MzY4fQ.PpnC_MjVxpRAkOUgy7ACbHj777bLKhJNuT_RHpsAHuE`,
+          authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       },

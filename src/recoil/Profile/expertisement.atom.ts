@@ -1,11 +1,10 @@
 import {
   AreaOfExpertiseInput,
   CustomKeywordsOfExpertiseInput,
-  KeywordsOfExpertiseInput,
 } from "@/common/types/profile.type";
 import { atom, selector } from "recoil";
 
-export const temp = selector({
+export const ExpertisementInfoAtom = selector({
   key: "expertisementTemp",
   get: ({ get }) => {
     const areaOfData = get(AreaOfExpertiseAtom);

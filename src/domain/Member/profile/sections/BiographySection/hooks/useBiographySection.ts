@@ -1,21 +1,30 @@
+import { useCreateProfile } from "@/infra/profile/hooks/useCreateProfile";
 import { useFetchFileUrl } from "@/infra/profile/hooks/useFetchFileUrl";
 import {
-  BiographyInfoAtom,
+  BiographyTextfieldsInfoAtom,
   MediaAtom,
   ResumeFile,
   ResumeFilenameWithTimestamp,
 } from "@/recoil/Profile/biography.atom";
+import { ProfileIntoAtom } from "@/recoil/Profile/profile.atom";
 import { useCallback } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 export const useBioSection = () => {
   // state
-  const [biographyInfos, setBiographyInfos] = useRecoilState(BiographyInfoAtom);
+  const [biographyInfos, setBiographyInfos] = useRecoilState(
+    BiographyTextfieldsInfoAtom
+  );
 
-  const [resumeFile, setResumetFile] = useRecoilState(ResumeFile);
+  const [resumeFile, setResumeFile] = useRecoilState(ResumeFile);
   const filename = useRecoilValue(ResumeFilenameWithTimestamp);
 
   const [medias, setMedias] = useRecoilState(MediaAtom);
   const mediaTemp = [...medias];
+
+  const results = useRecoilValue(ProfileIntoAtom);
+
+  // api
+  const { createMember } = useCreateProfile();
 
   // file upload function
   const { requeryFileUrl, data } = useFetchFileUrl();
@@ -49,7 +58,7 @@ export const useBioSection = () => {
       return;
     }
     reader.readAsDataURL(e.target.files[0]);
-    setResumetFile(e.target.files[0]);
+    setResumeFile(e.target.files[0]);
     requeryFileUrl({ variables: { filename } });
 
     e.target.value = "";
@@ -85,7 +94,10 @@ export const useBioSection = () => {
     setMedias(temp);
   };
   const isButtonVisible = medias.length <= 4;
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    console.log(JSON.stringify(results));
+    createMember({ variables: { createProfileInput: results } });
+  };
 
   return {
     state: {
