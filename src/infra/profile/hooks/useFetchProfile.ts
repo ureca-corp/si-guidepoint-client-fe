@@ -1,6 +1,9 @@
 import { useSessionUser } from "@/common/auth/session/application";
 import { CreateProfileInput } from "@/common/types/profile.type";
+import { PersonalInfoAtom } from "@/recoil/Profile";
 import { ApolloError, gql, useQuery } from "@apollo/client";
+import { useSetRecoilState } from "recoil";
+import { ProfileResponse } from "../dto/response.dto";
 
 const FETCH_ROFILE = gql`
   query {
@@ -93,8 +96,8 @@ const FETCH_ROFILE = gql`
 
 export const useFetchProfile = () => {
   const { accessToken } = useSessionUser().user;
-  console.log(accessToken);
-  const { data } = useQuery<CreateProfileInput>(FETCH_ROFILE, {
+
+  const { data } = useQuery<ProfileResponse>(FETCH_ROFILE, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken}`,
@@ -104,7 +107,7 @@ export const useFetchProfile = () => {
     onError: (err: ApolloError) => {
       console.log(err);
     },
-    onCompleted: (res: CreateProfileInput) => {
+    onCompleted: (res: ProfileResponse) => {
       console.log(res);
     },
   });

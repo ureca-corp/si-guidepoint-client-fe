@@ -21,7 +21,8 @@ export const BiographySection = () => {
       <SocialMediaLinkArticle props={state.mediaItemState} />
       <ResumeArticle props={state.resume} />
       <ConflictArticle props={state.compliance} />
-      <SubmitButton onClick={state.submit.onSubmit} />
+
+      {!state.isReadOnly && <SubmitButton onClick={state.submit.onSubmit} />}
     </Stack>
   );
 };

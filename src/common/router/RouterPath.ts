@@ -8,8 +8,8 @@ export enum AuthRouterPath {
 }
 
 export enum UserRouterPath {
-  // user
   Profile = "/profile",
+  EditProfile = "/profile/edit",
 }
 
 export const PublicRoutes = [AuthRouterPath.Login];

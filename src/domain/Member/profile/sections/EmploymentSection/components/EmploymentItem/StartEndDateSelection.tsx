@@ -1,4 +1,5 @@
 import { MonthModels } from "@/common/models/input.model";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import {
   FormControl,
   MenuItem,
@@ -6,6 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useRecoilValue } from "recoil";
 import { YearDateProps } from "../../types/item.type";
 
 type StartEndDateSelectionProps = {
@@ -22,6 +24,7 @@ export const StartEndDateSelection = ({
   isVertical,
 }: StartEndDateSelectionProps) => {
   const nowYear = +new Date().getFullYear();
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
 
   return (
     <Stack
@@ -48,6 +51,7 @@ export const StartEndDateSelection = ({
                 startDateState.month.onChange(id, e.target.value)
               }
               inputProps={{ "aria-label": "Without label" }}
+              readOnly={isReadOnly}
             >
               {MonthModels.map((it) => (
                 <MenuItem key={it} value={it}>
@@ -61,6 +65,7 @@ export const StartEndDateSelection = ({
               value={startDateState.year.value}
               onChange={(e) => startDateState.year.onChange(id, e.target.value)}
               inputProps={{ "aria-label": "Without label" }}
+              readOnly={isReadOnly}
             >
               {Array.from(new Array(100), (v, i) => (
                 <MenuItem key={i} value={(nowYear - i).toString()}>
@@ -83,6 +88,7 @@ export const StartEndDateSelection = ({
               value={endDateState.month.value}
               onChange={(e) => endDateState.month.onChange(id, e.target.value)}
               inputProps={{ "aria-label": "Without label" }}
+              readOnly={isReadOnly}
             >
               {MonthModels.map((it) => (
                 <MenuItem key={it} value={it}>
@@ -96,6 +102,7 @@ export const StartEndDateSelection = ({
               value={endDateState.year.value}
               onChange={(e) => endDateState.year.onChange(id, e.target.value)}
               inputProps={{ "aria-label": "Without label" }}
+              readOnly={isReadOnly}
             >
               {Array.from(new Array(100), (v, i) => (
                 <MenuItem key={i} value={(nowYear - i).toString()}>

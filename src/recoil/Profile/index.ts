@@ -1,8 +1,8 @@
-export { ContactInfoAtom } from "./contact.atom";
-export { PersonalInfoAtom } from "./personal.atom";
-export { AssistantInfoAtom } from "./assistant.atom";
-export { EmploymentInfoAtom } from "./employment.atom";
-export { KeywordExpertisementAtom } from "./expertisement.atom";
-export { ResidenceInfoAtom } from "./residence.atom";
-export { ParticipationInfoAtom } from "./participation.atom";
-export { BiographyInfoAtom } from "./biography.atom";
+export * from "./contact.atom";
+export * from "./personal.atom";
+export * from "./assistant.atom";
+export * from "./employment.atom";
+export * from "./residence.atom";
+export * from "./participation.atom";
+export * from "./biography.atom";
+export * from "./expertisement.atom";

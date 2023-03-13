@@ -1,5 +1,7 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import { Checkbox, Stack, Typography } from "@mui/material";
+import { useRecoilValue } from "recoil";
 
 type BasicCheckboxProps = {
   checkLabel: string;
@@ -15,6 +17,8 @@ export const BasicCheckbox = ({
   isVertical = false,
 }: BasicCheckboxProps) => {
   const { isMedium } = useCustomMediaQuery();
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
+
   return (
     <Stack
       direction={isVertical ? "column-reverse" : "row"}
@@ -25,6 +29,7 @@ export const BasicCheckbox = ({
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         inputProps={{ "aria-label": "controlled" }}
+        disabled={isReadOnly}
       />
       <Typography width={isMedium ? "100%" : "unset"} whiteSpace={"pre"}>
         {checkLabel}

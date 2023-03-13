@@ -9,6 +9,8 @@ import {
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
 import { SnsModels } from "@/common/models/input.model";
 import { SocialMediaProfile } from "@/common/types/profile.type";
+import { useRecoilValue } from "recoil";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 
 interface Props {
   id: number;
@@ -26,6 +28,8 @@ export const SocialMediaLinkItem = ({
   onChangeState,
   onDelete,
 }: Props) => {
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
+
   return (
     <Stack direction={"row"} spacing="1.11vw">
       <FormControl sx={{ width: "200px" }}>
@@ -33,6 +37,7 @@ export const SocialMediaLinkItem = ({
           id="demo-simple-select"
           value={itemState.type}
           onChange={(e) => onChangeState.type(id, e.target.value)}
+          readOnly={isReadOnly}
         >
           {SnsModels.map((it) => (
             <MenuItem key={it} value={it}>
@@ -45,12 +50,16 @@ export const SocialMediaLinkItem = ({
         fullWidth
         value={itemState.link}
         onChange={(e) => onChangeState.link(id, e.target.value)}
+        InputProps={{
+          readOnly: isReadOnly,
+        }}
       />
-      <IconButton onClick={() => onDelete(id)}>
-        <DisabledByDefaultRoundedIcon color="error" />
-      </IconButton>
+
+      {!isReadOnly && (
+        <IconButton onClick={() => onDelete(id)}>
+          <DisabledByDefaultRoundedIcon color="error" />
+        </IconButton>
+      )}
     </Stack>
   );
 };
-
-const sx = {};

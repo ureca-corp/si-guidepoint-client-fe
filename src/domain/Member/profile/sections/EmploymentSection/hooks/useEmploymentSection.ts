@@ -2,10 +2,14 @@ import {
   EmploymentExperienceAtom,
   EmploymentItemAtom,
 } from "@/recoil/Profile/employment.atom";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import { useCallback, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export const useEmploymentSection = () => {
+  // isReadOnly
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
+
   // state
   const currYear = new Date().getFullYear().toString();
   const [itemCount, setItemCount] = useState(1);
@@ -14,6 +18,7 @@ export const useEmploymentSection = () => {
   const [experienceYear, setExperienceYear] = useRecoilState(
     EmploymentExperienceAtom
   );
+
   const temp = [...employmentInfos];
 
   const handleSectorExperienceChange = (v: string) => {
@@ -98,8 +103,8 @@ export const useEmploymentSection = () => {
     setEmploymentInfos(remainItemList);
   };
 
-  const isButtonVisible = employmentInfos.length <= 4;
-  const isDeleteButtonVisible = employmentInfos.length > 1;
+  const isButtonVisible = employmentInfos.length <= 4 && !isReadOnly;
+  const isDeleteButtonVisible = employmentInfos.length > 1 && !isReadOnly;
 
   return {
     sectorExperienceState: {

@@ -7,9 +7,13 @@ import {
   ResumeFilenameWithTimestamp,
 } from "@/recoil/Profile/biography.atom";
 import { ProfileIntoAtom } from "@/recoil/Profile/profile.atom";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import { useCallback } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 export const useBioSection = () => {
+  // isReadOnly
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
+
   // state
   const [biographyInfos, setBiographyInfos] = useRecoilState(
     BiographyTextfieldsInfoAtom
@@ -93,7 +97,7 @@ export const useBioSection = () => {
 
     setMedias(temp);
   };
-  const isButtonVisible = medias.length <= 4;
+  const isButtonVisible = medias.length <= 4 && !isReadOnly;
   const onSubmit = () => {
     console.log(JSON.stringify(results));
     createMember({ variables: { createProfileInput: results } });
@@ -132,6 +136,7 @@ export const useBioSection = () => {
         file: resumeFile?.name ?? "",
         onClick: resumeUploadHandler,
       },
+      isReadOnly: isReadOnly,
       submit: { onSubmit: onSubmit },
     },
   };

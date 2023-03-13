@@ -1,5 +1,7 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import { Stack, TextField } from "@mui/material";
+import { useRecoilValue } from "recoil";
 import { TextInputProps } from "../../types/input.type";
 import { BasicLabel } from "../label";
 
@@ -11,6 +13,7 @@ export const TextInput = ({
   isTitleLefted = false,
 }: TextInputProps) => {
   const { isMedium } = useCustomMediaQuery();
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
 
   return (
     <Stack
@@ -27,6 +30,9 @@ export const TextInput = ({
         fullWidth
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        InputProps={{
+          readOnly: isReadOnly,
+        }}
       />
     </Stack>
   );

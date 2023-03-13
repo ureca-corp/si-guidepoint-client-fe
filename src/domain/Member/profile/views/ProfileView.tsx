@@ -2,6 +2,6 @@ import { Profile } from ".";
 import { useProfileView } from "./useProfileView";
 
 export const ProfileView = () => {
-  useProfileView();
+  const {} = useProfileView();
   return <Profile />;
 };

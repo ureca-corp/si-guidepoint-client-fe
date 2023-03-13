@@ -2,6 +2,7 @@ import {
   ParticipationBooleanAtom,
   ParticipationInfoAtom,
 } from "@/recoil/Profile/participation.atom";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export const useParticipationArticle = () => {
@@ -12,6 +13,17 @@ export const useParticipationArticle = () => {
   const [participations, setParticipations] = useRecoilState(
     ParticipationInfoAtom
   );
+
+  useEffect(() => {
+    setParticipationBoolean({
+      engagement: isInParticipation("LongTermEngagement"),
+      expert: isInParticipation("ExpertWitness"),
+      inperson: isInParticipation("InPersonMeetings"),
+      phoneConsultation: isInParticipation("PhoneConsultations"),
+      quickPoll: isInParticipation("QuickPolls"),
+      surveys: isInParticipation("Surveys"),
+    });
+  }, [participations]);
 
   const handlePhoneConsultationChange = (v: boolean) => {
     setParticipationBoolean((old) => ({ ...old, phoneConsultation: v }));
@@ -50,6 +62,10 @@ export const useParticipationArticle = () => {
       const remains = participations.filter((it) => it != key);
       setParticipations(remains);
     }
+  };
+
+  const isInParticipation = (text: string) => {
+    return participations.includes(text) ? true : false;
   };
 
   return {

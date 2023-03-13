@@ -90,6 +90,14 @@ export const lightTheme = createTheme({
               transition: "unset !important",
             },
           },
+
+          "& .MuiInputBase-readOnly": {
+            ".MuiOutlinedInput-notchedOutline": {
+              borderWidth: "1px !important",
+              borderColor: `${LightColor.BorderColor1} !important`,
+              transition: "unset !important",
+            },
+          },
         },
       },
     },

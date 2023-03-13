@@ -1,5 +1,6 @@
 import { PREFIX_TYPE } from "@/common/models/enum/form.enum";
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import {
   FormControl,
   FormHelperText,
@@ -7,6 +8,7 @@ import {
   Select,
   Stack,
 } from "@mui/material";
+import { useRecoilValue } from "recoil";
 import { BasicLabel } from "../label";
 
 type FullSelectionType = {
@@ -28,6 +30,7 @@ export const FullSelection = ({
   isVertical = false,
 }: FullSelectionType) => {
   const { isMedium } = useCustomMediaQuery();
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
 
   return (
     <Stack
@@ -45,6 +48,7 @@ export const FullSelection = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           inputProps={{ "aria-label": "Without label" }}
+          readOnly={isReadOnly}
         >
           {options.map((it, index) => (
             <MenuItem key={index} value={it}>

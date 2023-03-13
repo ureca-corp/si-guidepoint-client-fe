@@ -1,6 +1,8 @@
 import { useCustomMediaQuery } from "@/common/theme/screen";
+import { ProfileReadonlyAtom } from "@/recoil/Profile/readonly/readonly.atom";
 import { css } from "@emotion/react";
 import { FormControl, MenuItem, Select, Stack, TextField } from "@mui/material";
+import { useRecoilValue } from "recoil";
 import { SelectProps, TextInputProps } from "../../types/input.type";
 import { BasicLabel } from "../label";
 
@@ -14,6 +16,7 @@ export const TextInputWithOption = ({
   selectProps,
 }: TextInputWithOptionProps) => {
   const { isMedium } = useCustomMediaQuery();
+  const isReadOnly = useRecoilValue(ProfileReadonlyAtom);
 
   return (
     <Stack
@@ -27,12 +30,16 @@ export const TextInputWithOption = ({
           value={textProps.value}
           onChange={(e) => textProps.onChange(e.target.value)}
           sx={{ flex: 3 }}
+          InputProps={{
+            readOnly: isReadOnly,
+          }}
         />
         <FormControl fullWidth sx={{ flex: 2 }}>
           <Select
             value={selectProps.value}
             onChange={(e) => selectProps.onChange(e.target.value)}
             inputProps={{ "aria-label": "Without label" }}
+            readOnly={isReadOnly}
           >
             {selectProps.options.map((it) => (
               <MenuItem key={it} value={it}>
