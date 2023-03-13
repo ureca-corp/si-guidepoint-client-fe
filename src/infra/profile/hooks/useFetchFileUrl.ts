@@ -1,4 +1,4 @@
-import LocalStorage from "@/common/LocalStorage/LocalStorage";
+import { useSessionUser } from "@/common/auth/session/application";
 import {
   BiographyTextfieldsInfoAtom,
   ResumeFile,
@@ -17,7 +17,7 @@ const FETCH_FILE_URL = gql`
 `;
 
 export const useFetchFileUrl = () => {
-  const accessToken = LocalStorage.getItem("accessToken");
+  const { accessToken } = useSessionUser().user;
   const file = useRecoilValue(ResumeFile);
   const setBiographyInfo = useSetRecoilState(BiographyTextfieldsInfoAtom);
 

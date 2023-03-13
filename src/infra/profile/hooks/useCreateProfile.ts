@@ -1,6 +1,5 @@
+import { useSessionUser } from "@/common/auth/session/application";
 import { UseDialogOpen } from "@/common/hooks";
-import LocalStorage from "@/common/LocalStorage/LocalStorage";
-import { CreateProfileInput } from "@/common/types/profile.type";
 import { gql, ApolloError, useMutation } from "@apollo/client";
 
 type QueryResponse = {
@@ -17,7 +16,7 @@ const CREATE_PROFILE = gql`
 
 export const useCreateProfile = () => {
   const { openState } = UseDialogOpen();
-  const accessToken = LocalStorage.getItem("accessToken");
+  const { accessToken } = useSessionUser().user;
   const [createMember, { loading }] = useMutation<QueryResponse>(
     CREATE_PROFILE,
     {
