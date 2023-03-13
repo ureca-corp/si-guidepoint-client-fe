@@ -1,5 +1,4 @@
 import { useSessionUser } from "@/common/auth/session/application";
-import SessionStorage from "@/common/SessionStorage/SessionStorage";
 import { CreateProfileInput } from "@/common/types/profile.type";
 import { ApolloError, gql, useQuery } from "@apollo/client";
 
