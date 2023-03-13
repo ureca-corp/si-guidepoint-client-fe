@@ -9,7 +9,6 @@ import {
   PersonalArticle,
   ResidenceArticle,
 } from "./articles";
-import { useFetchTerms } from "@/infra/terms/hooks/useFetchTerms";
 
 export const ProfileSection = () => {
   const { isMedium } = useCustomMediaQuery();
