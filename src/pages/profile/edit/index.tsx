@@ -1,8 +1,8 @@
 import { ProfileView } from "@/domain/Member/profile/views";
 import { NextPage } from "next";
 
-const HomePage: NextPage = () => {
+const ProfileEditPage: NextPage = () => {
   return <ProfileView />;
 };
 
-export default HomePage;
+export default ProfileEditPage;
